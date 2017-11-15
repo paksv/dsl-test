@@ -22,10 +22,20 @@ changeBuildType("DepConf") {
     }
     description = "descriptuion"
 
+    check(allowExternalStatus == false) {
+        "Unexpected option value: allowExternalStatus = $allowExternalStatus"
+    }
+    allowExternalStatus = true
+
     check(buildNumberPattern == "%build.counter%") {
         "Unexpected option value: buildNumberPattern = $buildNumberPattern"
     }
     buildNumberPattern = "id-%build.counter%"
+
+    check(maxRunningBuilds == 0) {
+        "Unexpected option value: maxRunningBuilds = $maxRunningBuilds"
+    }
+    maxRunningBuilds = 2
 
     params {
         add {
