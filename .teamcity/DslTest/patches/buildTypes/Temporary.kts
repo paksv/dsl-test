@@ -11,12 +11,6 @@ To apply it, change the buildType with uuid = 'Temporary'
 accordingly and delete the patch script.
 */
 changeBuildType("Temporary") {
-    expectSteps {
-        maven {
-            mavenVersion = custom {
-            }
-        }
-    }
     steps {
         insert(1) {
             dockerBuild {

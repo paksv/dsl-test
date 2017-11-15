@@ -56,7 +56,7 @@ object Project : Project({
     }
 
     vcsRoot(GitVcsRoot({
-        uuid = "test-java-lib-repo"
+        uuid = "testjavalibrepo"
         id = uuid
         name = uuid
         url = "https://github.com/paksv/test-java-lib-repo.git"
@@ -68,7 +68,7 @@ object Project : Project({
         uuid = id
         name = id
         vcs {
-            root("test-java-lib-repo")
+            root("testjavalibrepo")
         }
         steps {
             maven {}
