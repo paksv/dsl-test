@@ -33,5 +33,20 @@ changeBuildType("Temporary") {
                 """.trimIndent()
             }
         }
+        insert(2) {
+            dockerBuild {
+                name = "docker build step (1)"
+                executionMode = BuildStep.ExecutionMode.RUN_ON_SUCCESS
+                source = path {
+                    path = "context/Dockerfile"
+                }
+                contextDir = "context"
+                namesAndTags = """
+                    name:tag
+                    name:tag2
+                    name:tag3
+                """.trimIndent()
+            }
+        }
     }
 }
