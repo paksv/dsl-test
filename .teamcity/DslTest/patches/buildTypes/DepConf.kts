@@ -9,5 +9,14 @@ To apply it, change the buildType with uuid = 'DepConf'
 accordingly and delete the patch script.
 */
 changeBuildType("DepConf") {
+    check(name == "Top Config") {
+        "Unexpected name: '$name'"
+    }
     name = "Top Conf"
+
+    requirements {
+        add {
+            doesNotExist("some.requirement")
+        }
+    }
 }
