@@ -25,7 +25,7 @@ object Project : Project({
             id = "PROJECT_EXT_2"
             mode = VersionedSettings.Mode.ENABLED
             buildSettingsMode = VersionedSettings.BuildSettingsMode.PREFER_SETTINGS_FROM_VCS
-            rootExtId = DslTest_HttpsGithubComPaksvDslTestGitRefsHeadsMaster.extId
+            rootExtId = DslTest_HttpsGithubComPaksvDslTestGitRefsHeadsMaster.id
             showChanges = true
             settingsFormat = VersionedSettings.Format.KOTLIN
             storeSecureParamsOutsideOfVcs = true
