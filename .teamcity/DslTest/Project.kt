@@ -124,7 +124,9 @@ object Project : Project({
             root("testjavalibrepo")
         }
         steps {
-            maven {}
+            maven {
+                this.dockerImage = "openjdk/8-jdk"
+            }
         }
     }))
 
