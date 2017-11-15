@@ -17,9 +17,9 @@ object Project : Project({
 
     vcsRoot(DslTest_HttpsGithubComPaksvDslTestGitRefsHeadsMaster)
     vcsRoot(GitVcsRoot({
-        uuid = "eb30d6bb-0d83-4a1e-9ede-d61c7ecb5ec2"
-        id = "DslTest_HttpsGithubComPaksvDslTestGitRefsHeadsMaster2"
-        name = "https://github.com/paksv/dsl-test.git#refs/heads/master - 2"
+        uuid = "eb30d6bb-0d83-4a1e-9ede-d61c7ecb2"
+        id = "DslTest_HttpsGithubComPaksvDslTes2"
+        name = "di 2"
         url = "https://github.com/paksv/dsl-test.git"
         authMethod = password {
             userName = "paksv"
