@@ -36,17 +36,9 @@ object DepConf : BuildType({
         }
     }
 
+    description = "description"
+
     failureConditions {
-
-        check(testFailure == true) {
-            "Unexpected option value: testFailure = $testFailure"
-        }
-        testFailure = false
-
-        check(javaCrash == true) {
-            "Unexpected option value: javaCrash = $javaCrash"
-        }
-        javaCrash = false
         add {
             failOnText {
                 conditionType = BuildFailureOnText.ConditionType.CONTAINS

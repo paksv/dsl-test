@@ -12,5 +12,4 @@ changeBuildType("DepConf") {
     check(description == "") {
         "Unexpected description: '$description'"
     }
-    description = "descriptuion"
 }
