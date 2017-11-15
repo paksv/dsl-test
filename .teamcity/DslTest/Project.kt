@@ -17,6 +17,8 @@ object Project : Project({
     vcsRoot(DslTest_HttpsGithubComPaksvDslTestGitRefsHeadsMaster)
 
     buildType(DslTest_Build)
+    buildType(DepConf)
+
 
     features {
         versionedSettings {
