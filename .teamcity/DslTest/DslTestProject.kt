@@ -25,6 +25,8 @@ object DslTestProject : Project({
     buildType(Docker_Tester)
     buildType(DepConf)
 
+    project(SubProject)
+
     params {
         param("image-name", "sample")
         param("username", "paksv")

@@ -35,4 +35,3 @@ the debug options is available in the context menu for the task.
 
 version = "2017.1"
 project(DslTest.DslTestProject)
-project(DslTest.SubProject)
