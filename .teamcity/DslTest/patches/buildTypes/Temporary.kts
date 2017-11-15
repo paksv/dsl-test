@@ -1,6 +1,7 @@
 package DslTest.patches.buildTypes
 
 import jetbrains.buildServer.configs.kotlin.v2017_2.*
+import jetbrains.buildServer.configs.kotlin.v2017_2.buildSteps.MavenBuildStep
 import jetbrains.buildServer.configs.kotlin.v2017_2.buildSteps.dockerBuild
 import jetbrains.buildServer.configs.kotlin.v2017_2.buildSteps.maven
 import jetbrains.buildServer.configs.kotlin.v2017_2.ui.changeBuildType
@@ -11,7 +12,17 @@ To apply it, change the buildType with uuid = 'Temporary'
 accordingly and delete the patch script.
 */
 changeBuildType("Temporary") {
+    expectSteps {
+        maven {
+            mavenVersion = custom {
+            }
+        }
+    }
     steps {
+        update<MavenBuildStep>(0) {
+            goals = "validate"
+            mavenVersion = defaultProvidedVersion()
+        }
         insert(1) {
             dockerBuild {
                 name = "docker build step"
