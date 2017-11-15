@@ -17,7 +17,7 @@ object DslTest_Build : BuildType({
     steps {
         script {
             scriptContent = """
-                echo hello
+                echo hello3
                 echo hello2
             """.trimIndent()
         }
