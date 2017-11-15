@@ -20,6 +20,19 @@ changeBuildType("DepConf") {
         }
     }
 
+    failureConditions {
+
+        check(testFailure == true) {
+            "Unexpected option value: testFailure = $testFailure"
+        }
+        testFailure = false
+
+        check(javaCrash == true) {
+            "Unexpected option value: javaCrash = $javaCrash"
+        }
+        javaCrash = false
+    }
+
     features {
         add {
             feature {
