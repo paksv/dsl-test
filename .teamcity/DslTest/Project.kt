@@ -1,7 +1,6 @@
 package DslTest
 
 import DslTest.buildTypes.*
-import DslTest.vcsRoots.*
 import DslTest.vcsRoots.DslTest_HttpsGithubComPaksvDslTestGitRefsHeadsMaster
 import jetbrains.buildServer.configs.kotlin.v10.vcs.GitVcsRoot
 import jetbrains.buildServer.configs.kotlin.v2017_2.*
@@ -45,19 +44,17 @@ object Project : Project({
         }
     }
 
-    buildType {
-        BuildType({
-            id="Temporary"
-            uuid = id
-            name=id
-            vcs{
-                GitVcsRoot({
-                    url="https://github.com/paksv/test-java-lib-repo.git"
-                })
-            }
-            steps{
-                maven{}
-            }
-        })
-    }
+    buildType(BuildType({
+        id = "Temporary"
+        uuid = id
+        name = id
+        vcs {
+            GitVcsRoot({
+                url = "https://github.com/paksv/test-java-lib-repo.git"
+            })
+        }
+        steps {
+            maven {}
+        }
+    }))
 })
