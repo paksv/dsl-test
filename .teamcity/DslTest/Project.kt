@@ -31,4 +31,15 @@ object Project : Project({
             storeSecureParamsOutsideOfVcs = true
         }
     }
+    features {
+        add {
+            feature {
+                type = "JetBrains.SharedResources"
+                id = "PROJECT_EXT_3"
+                param("quota", "-1")
+                param("name", "Res2")
+                param("type", "quoted")
+            }
+        }
+    }
 })
