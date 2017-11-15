@@ -2,6 +2,7 @@ package DslTest.buildTypes
 
 import jetbrains.buildServer.configs.kotlin.v2017_2.*
 import jetbrains.buildServer.configs.kotlin.v2017_2.buildSteps.script
+import jetbrains.buildServer.configs.kotlin.v2017_2.triggers.VcsTrigger
 import jetbrains.buildServer.configs.kotlin.v2017_2.triggers.vcs
 
 object DslTest_Build : BuildType({
@@ -28,6 +29,9 @@ object DslTest_Build : BuildType({
 
     triggers {
         vcs {
+            quietPeriod = 10
+            quietPeriodMode = VcsTrigger.QuietPeriodMode.DO_NOT_USE
+            watchChangesInDependencies = true
         }
     }
 })
