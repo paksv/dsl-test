@@ -16,6 +16,17 @@ object Project : Project({
     name = "Dsl Test"
 
     vcsRoot(DslTest_HttpsGithubComPaksvDslTestGitRefsHeadsMaster)
+    vcsRoot(GitVcsRoot({
+        uuid = "eb30d6bb-0d83-4a1e-9ede-d61c7ecb5ec2"
+        id = "DslTest_HttpsGithubComPaksvDslTestGitRefsHeadsMaster2"
+        name = "https://github.com/paksv/dsl-test.git#refs/heads/master - 2"
+        url = "https://github.com/paksv/dsl-test.git"
+        authMethod = password {
+            userName = "paksv"
+            password = "credentialsJSON:ed7ae30f-c857-4ea3-b21c-804bf3868768"
+        }
+    })
+    )
 
     buildType(DslTest_Build)
     buildType(DepConf)
