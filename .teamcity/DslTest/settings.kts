@@ -10,8 +10,8 @@ shouldn't be changed and its package should be the same as the
 project's external id.
 
 The script should contain a single call to the project() function
-with a Project instance or an init function as an argument, you
-can also specify both of them to refine the specified Project in
+with a DslTestProject instance or an init function as an argument, you
+can also specify both of them to refine the specified DslTestProject in
 the init function.
 
 VcsRoots, BuildTypes, and Templates of this project must be
@@ -34,4 +34,4 @@ the debug options is available in the context menu for the task.
 */
 
 version = "2017.1"
-project(DslTest.Project)
+project(DslTest.DslTestProject)

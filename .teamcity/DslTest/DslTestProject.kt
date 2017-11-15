@@ -9,7 +9,7 @@ import jetbrains.buildServer.configs.kotlin.v2017_2.projectFeatures.VersionedSet
 import jetbrains.buildServer.configs.kotlin.v2017_2.projectFeatures.dockerRegistry
 import jetbrains.buildServer.configs.kotlin.v2017_2.projectFeatures.versionedSettings
 
-object Project : Project({
+object DslTestProject : Project({
     uuid = "68ed399e-3cdc-4ffd-b638-e13a0b5b709f"
     id = "DslTest"
     parentId = "_Root"
