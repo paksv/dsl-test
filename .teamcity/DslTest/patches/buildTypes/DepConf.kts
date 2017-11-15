@@ -9,8 +9,5 @@ To apply it, change the buildType with uuid = 'DepConf'
 accordingly and delete the patch script.
 */
 changeBuildType("DepConf") {
-    check(name == "Dependent Conf") {
-        "Unexpected name: '$name'"
-    }
     name = "Top Conf"
 }
