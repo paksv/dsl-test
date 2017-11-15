@@ -47,5 +47,19 @@ changeBuildType("Temporary") {
                 """.trimIndent()
             }
         }
+        insert(3) {
+            dockerBuild {
+                name = "docker build step #2 (1)"
+                executionMode = BuildStep.ExecutionMode.RUN_ON_SUCCESS
+                source = url {
+                    url = "http://localhost:80800/DockerFile"
+                }
+                namesAndTags = """
+                    name:tag
+                    name:tag2
+                    name:tag3
+                """.trimIndent()
+            }
+        }
     }
 }
