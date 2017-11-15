@@ -53,8 +53,10 @@ changeBuildType("Temporary") {
                 executionMode = BuildStep.ExecutionMode.RUN_ON_SUCCESS
                 source = content {
                     content = """
-                        version 3.0
-                        Docker file data
+                        FROM alpine
+                        ADD . /code
+                        WORKDIR /code
+                        CMD ["echo", "hello world"]
                     """.trimIndent()
                 }
                 namesAndTags = """
