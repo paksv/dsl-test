@@ -17,6 +17,16 @@ changeBuildType("DepConf") {
     }
     name = "Top Conf"
 
+    check(description == "") {
+        "Unexpected description: '$description'"
+    }
+    description = "descriptuion"
+
+    check(buildNumberPattern == "%build.counter%") {
+        "Unexpected option value: buildNumberPattern = $buildNumberPattern"
+    }
+    buildNumberPattern = "id-%build.counter%"
+
     params {
         add {
             text("param2", "", label = "aa", description = "ffff", display = ParameterDisplay.HIDDEN, allowEmpty = true)
