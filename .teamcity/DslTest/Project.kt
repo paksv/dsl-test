@@ -98,6 +98,7 @@ object Project : Project({
                 source = path {
                     path = "Dockerfile"
                 }
+                this.namesAndTags = "%image-name%:%teamcity.build.id%"
             }
             script {
                 name="Tag & Push"
