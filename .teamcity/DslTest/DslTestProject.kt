@@ -16,7 +16,6 @@ object DslTestProject : Project({
     name = "Dsl Test"
 
     vcsRoot(testjavalibrepo)
-    vcsRoot(DslTest_HttpsGithubComPaksvDslTes2)
     vcsRoot(DslTest_HttpsGithubComPaksvDslTestGitRefsHeadsMaster)
     vcsRoot(nadia_docker)
 
