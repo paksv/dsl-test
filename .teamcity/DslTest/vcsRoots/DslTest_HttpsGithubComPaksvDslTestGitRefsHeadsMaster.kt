@@ -10,6 +10,6 @@ object DslTest_HttpsGithubComPaksvDslTestGitRefsHeadsMaster : GitVcsRoot({
     url = "https://github.com/paksv/dsl-test.git"
     authMethod = password {
         userName = "paksv"
-        password = "credentialsJSON:ed7ae30f-c857-4ea3-b21c-804bf3868768"
+        password = "credentialsJSON:56c2cd8d-e61f-4838-9f92-d27d1cecf4ae"
     }
 })
