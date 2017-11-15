@@ -1,6 +1,8 @@
 package DslTest.patches.buildTypes
 
 import jetbrains.buildServer.configs.kotlin.v2017_2.*
+import jetbrains.buildServer.configs.kotlin.v2017_2.failureConditions.BuildFailureOnText
+import jetbrains.buildServer.configs.kotlin.v2017_2.failureConditions.failOnText
 import jetbrains.buildServer.configs.kotlin.v2017_2.ui.changeBuildType
 
 /*
@@ -31,6 +33,15 @@ changeBuildType("DepConf") {
             "Unexpected option value: javaCrash = $javaCrash"
         }
         javaCrash = false
+        add {
+            failOnText {
+                conditionType = BuildFailureOnText.ConditionType.CONTAINS
+                pattern = "Build should fail"
+                failureMessage = "Build was asked to fail  %param2%"
+                reverse = false
+                stopBuildOnFailure = true
+            }
+        }
     }
 
     features {
