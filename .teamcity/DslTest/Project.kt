@@ -49,7 +49,7 @@ object Project : Project({
         id = uuid
         name = uuid
         url = "https://github.com/paksv/test-java-lib-repo.git"
-        branch = "refs/heads/master"
+        authMethod = anonymous()
     }))
 
     buildType(BuildType({
