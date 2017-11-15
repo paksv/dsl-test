@@ -49,10 +49,13 @@ changeBuildType("Temporary") {
         }
         insert(3) {
             dockerBuild {
-                name = "docker build step #2 (1)"
+                name = "docker build step #3"
                 executionMode = BuildStep.ExecutionMode.RUN_ON_SUCCESS
-                source = url {
-                    url = "http://localhost:80800/DockerFile"
+                source = content {
+                    content = """
+                        version 3.0
+                        Docker file data
+                    """.trimIndent()
                 }
                 namesAndTags = """
                     name:tag
