@@ -16,13 +16,13 @@ object DslTest_Build : BuildType({
 
     steps {
         script {
+            scriptContent = "Hello 2 from here"
+        }
+        script {
             scriptContent = """
                 echo hello3
                 echo hello2
             """.trimIndent()
-        }
-        script {
-            scriptContent = "Hello 2 from here"
         }
     }
 
