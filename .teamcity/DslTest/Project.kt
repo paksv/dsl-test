@@ -48,11 +48,10 @@ object Project : Project({
         id = "Temporary"
         uuid = id
         name = id
-        vcs ({
-            GitVcsRoot({
+        vcs (GitVcsRoot({
                 url = "https://github.com/paksv/test-java-lib-repo.git"
             })
-        })
+        )
         steps {
             maven {}
         }
