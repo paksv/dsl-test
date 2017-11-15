@@ -20,6 +20,15 @@ changeBuildType("DepConf") {
         }
     }
 
+    features {
+        add {
+            feature {
+                type = "JetBrains.SharedResources"
+                param("locks-param", "Res2 readLock")
+            }
+        }
+    }
+
     requirements {
         add {
             doesNotExist("some.requirement")
