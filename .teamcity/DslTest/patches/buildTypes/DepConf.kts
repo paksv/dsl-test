@@ -3,6 +3,7 @@ package DslTest.patches.buildTypes
 import jetbrains.buildServer.configs.kotlin.v2017_2.*
 import jetbrains.buildServer.configs.kotlin.v2017_2.failureConditions.BuildFailureOnText
 import jetbrains.buildServer.configs.kotlin.v2017_2.failureConditions.failOnText
+import jetbrains.buildServer.configs.kotlin.v2017_2.triggers.retryBuild
 import jetbrains.buildServer.configs.kotlin.v2017_2.ui.changeBuildType
 
 /*
@@ -19,6 +20,14 @@ changeBuildType("DepConf") {
     params {
         add {
             text("param2", "", label = "aa", description = "ffff", display = ParameterDisplay.HIDDEN, allowEmpty = true)
+        }
+    }
+
+    triggers {
+        add {
+            retryBuild {
+                attempts = 0
+            }
         }
     }
 
