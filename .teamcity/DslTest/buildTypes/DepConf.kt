@@ -6,7 +6,7 @@ import jetbrains.buildServer.configs.kotlin.v2017_2.buildSteps.script
 object DepConf : BuildType({
     id="DepConf"
     uuid = id
-    name = "Top Conf"
+    name = "Top Config"
     steps {
         script {
             scriptContent = "echo script content"
