@@ -4,8 +4,11 @@ import DslTest.buildTypes.*
 import DslTest.vcsRoots.DslTest_HttpsGithubComPaksvDslTestGitRefsHeadsMaster
 import jetbrains.buildServer.configs.kotlin.v2017_2.*
 import jetbrains.buildServer.configs.kotlin.v2017_2.Project
+import jetbrains.buildServer.configs.kotlin.v2017_2.buildFeatures.dockerSupport
 import jetbrains.buildServer.configs.kotlin.v2017_2.buildSteps.dockerBuild
+import jetbrains.buildServer.configs.kotlin.v2017_2.buildSteps.dockerCompose
 import jetbrains.buildServer.configs.kotlin.v2017_2.buildSteps.maven
+import jetbrains.buildServer.configs.kotlin.v2017_2.buildSteps.script
 import jetbrains.buildServer.configs.kotlin.v2017_2.projectFeatures.VersionedSettings
 import jetbrains.buildServer.configs.kotlin.v2017_2.projectFeatures.versionedSettings
 import jetbrains.buildServer.configs.kotlin.v2017_2.vcs.GitVcsRoot
@@ -71,6 +74,8 @@ object Project : Project({
         url="https://github.com/burnasheva/docker_tutorial.git"
     }))
 
+
+
     buildType(BuildType({
         id="Docker_Tester"
         uuid = id
@@ -80,10 +85,24 @@ object Project : Project({
         }
         steps{
             dockerBuild {
+                this.name = "Docker Build"
                 source = path {
                     path = "Dockerfile"
                 }
             }
+            script {
+                name="Tag & Push"
+                this.scriptContent = "docker tag %image-name%:%teamcity.build.id% %username%/%image-name%:%teamcity.build.id%\n" +
+                        "docker push %username%/%image-name%:%teamcity.build.id%"
+            }
+        }
+        features {
+            feature(dockerSupport {
+                this.cleanupPushedImages = true
+                loginToRegistry = on {
+                    dockerRegistryId = "paksv-docker"
+                }
+            })
         }
     }))
 
@@ -116,4 +135,9 @@ object Project : Project({
             }
         }
     }))
+
+    params {
+        param("image-name", "sample")
+        param("username", "paksv")
+    }
 })
