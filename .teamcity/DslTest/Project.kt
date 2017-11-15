@@ -125,7 +125,7 @@ object Project : Project({
         }
         steps {
             maven {
-                this.dockerImage = "openjdk/8-jdk"
+                this.dockerImage = "openjdk:8-jdk"
             }
         }
     }))
