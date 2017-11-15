@@ -13,5 +13,9 @@ create("68ed399e-3cdc-4ffd-b638-e13a0b5b709f", BuildType({
     uuid = "af3d7f42-b37d-41f5-84c7-a7ce4a728ad9"
     id = "DslTest_Another"
     name = "Another"
+
+    enablePersonalBuilds = false
+    type = BuildTypeSettings.Type.DEPLOYMENT
+    maxRunningBuilds = 1
 }))
 
