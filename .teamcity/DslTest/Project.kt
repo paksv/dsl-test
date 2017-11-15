@@ -10,6 +10,7 @@ import jetbrains.buildServer.configs.kotlin.v2017_2.buildSteps.dockerCompose
 import jetbrains.buildServer.configs.kotlin.v2017_2.buildSteps.maven
 import jetbrains.buildServer.configs.kotlin.v2017_2.buildSteps.script
 import jetbrains.buildServer.configs.kotlin.v2017_2.projectFeatures.VersionedSettings
+import jetbrains.buildServer.configs.kotlin.v2017_2.projectFeatures.dockerRegistry
 import jetbrains.buildServer.configs.kotlin.v2017_2.projectFeatures.versionedSettings
 import jetbrains.buildServer.configs.kotlin.v2017_2.vcs.GitVcsRoot
 
@@ -74,7 +75,15 @@ object Project : Project({
         url="https://github.com/burnasheva/docker_tutorial.git"
     }))
 
-
+    features {
+        dockerRegistry {
+            id = "paksv_docker"
+            name = "Docker Registry - paksv"
+            url = "https://docker.io"
+            userName = "paksv"
+            password = "credentialsJSON:ed7ae30f-c857-4ea3-b21c-804bf3868768"
+        }
+    }
 
     buildType(BuildType({
         id="Docker_Tester"
@@ -100,7 +109,7 @@ object Project : Project({
             feature(dockerSupport {
                 this.cleanupPushedImages = true
                 loginToRegistry = on {
-                    dockerRegistryId = "paksv-docker"
+                    dockerRegistryId = "paksv_docker"
                 }
             })
         }
