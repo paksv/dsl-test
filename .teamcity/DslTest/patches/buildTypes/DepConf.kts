@@ -9,23 +9,4 @@ To apply it, change the buildType with uuid = 'DepConf'
 accordingly and delete the patch script.
 */
 changeBuildType("DepConf") {
-    check(allowExternalStatus == false) {
-        "Unexpected option value: allowExternalStatus = $allowExternalStatus"
-    }
-    allowExternalStatus = true
-
-    check(enablePersonalBuilds == true) {
-        "Unexpected option value: enablePersonalBuilds = $enablePersonalBuilds"
-    }
-    enablePersonalBuilds = false
-
-    check(buildNumberPattern == "%build.counter%") {
-        "Unexpected option value: buildNumberPattern = $buildNumberPattern"
-    }
-    buildNumberPattern = "id-%build.counter%"
-
-    check(maxRunningBuilds == 0) {
-        "Unexpected option value: maxRunningBuilds = $maxRunningBuilds"
-    }
-    maxRunningBuilds = 3
 }

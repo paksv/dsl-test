@@ -28,6 +28,12 @@ object DepConf : BuildType({
         }
     }
 
+    allowExternalStatus = true
+    enablePersonalBuilds = false
+    buildNumberPattern = "id-%build.counter%"
+    maxRunningBuilds = 3
+
+
     triggers {
         add {
             retryBuild {
