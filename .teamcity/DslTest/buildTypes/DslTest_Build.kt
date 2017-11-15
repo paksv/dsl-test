@@ -21,6 +21,9 @@ object DslTest_Build : BuildType({
                 echo hello2
             """.trimIndent()
         }
+        script {
+            scriptContent = "Hello 2 from here"
+        }
     }
 
     triggers {
