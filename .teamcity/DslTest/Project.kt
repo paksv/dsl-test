@@ -4,6 +4,7 @@ import DslTest.buildTypes.*
 import DslTest.vcsRoots.DslTest_HttpsGithubComPaksvDslTestGitRefsHeadsMaster
 import jetbrains.buildServer.configs.kotlin.v2017_2.*
 import jetbrains.buildServer.configs.kotlin.v2017_2.Project
+import jetbrains.buildServer.configs.kotlin.v2017_2.buildSteps.dockerBuild
 import jetbrains.buildServer.configs.kotlin.v2017_2.buildSteps.maven
 import jetbrains.buildServer.configs.kotlin.v2017_2.projectFeatures.VersionedSettings
 import jetbrains.buildServer.configs.kotlin.v2017_2.projectFeatures.versionedSettings
@@ -61,6 +62,29 @@ object Project : Project({
         name = uuid
         url = "https://github.com/paksv/test-java-lib-repo.git"
         authMethod = anonymous()
+    }))
+
+    vcsRoot(GitVcsRoot({
+        uuid="nadia_docker"
+        id = uuid
+        name= "Nadia Docker"
+        url="https://github.com/burnasheva/docker_tutorial.git"
+    }))
+
+    buildType(BuildType({
+        id="Docker_Tester"
+        uuid = id
+        name = "Docker Tester"
+        vcs{
+            root("nadia_docker")
+        }
+        steps{
+            dockerBuild {
+                source = path {
+                    path = "Dockerfile"
+                }
+            }
+        }
     }))
 
     buildType(BuildType({
