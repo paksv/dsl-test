@@ -14,6 +14,12 @@ changeBuildType("DepConf") {
     }
     name = "Top Conf"
 
+    params {
+        add {
+            text("param2", "", label = "aa", description = "ffff", display = ParameterDisplay.HIDDEN, allowEmpty = true)
+        }
+    }
+
     requirements {
         add {
             doesNotExist("some.requirement")
