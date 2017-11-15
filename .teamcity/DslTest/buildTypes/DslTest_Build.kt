@@ -16,7 +16,7 @@ object DslTest_Build : BuildType({
 
     steps {
         script {
-            scriptContent = "Hello 2 from here"
+            scriptContent = "echo Hello 2 from here"
         }
         script {
             scriptContent = """
