@@ -13,7 +13,7 @@ object SubProject : Project({
     name = "SubProject"
 
     val r = Random()
-    var baseNum = r.nextInt(10000000)
+    var baseNum = 512512
     if (baseNum < 0)
         baseNum = -baseNum
 
