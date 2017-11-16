@@ -4,10 +4,7 @@ import jetbrains.buildServer.configs.kotlin.v2017_2.BuildStep
 import jetbrains.buildServer.configs.kotlin.v2017_2.BuildType
 import jetbrains.buildServer.configs.kotlin.v2017_2.CheckoutMode
 import jetbrains.buildServer.configs.kotlin.v2017_2.buildFeatures.*
-import jetbrains.buildServer.configs.kotlin.v2017_2.buildSteps.DotnetCleanStep
-import jetbrains.buildServer.configs.kotlin.v2017_2.buildSteps.ant
-import jetbrains.buildServer.configs.kotlin.v2017_2.buildSteps.dotnetClean
-import jetbrains.buildServer.configs.kotlin.v2017_2.buildSteps.maven
+import jetbrains.buildServer.configs.kotlin.v2017_2.buildSteps.*
 import jetbrains.buildServer.configs.kotlin.v2017_2.failureConditions.BuildFailureOnMetric
 import jetbrains.buildServer.configs.kotlin.v2017_2.failureConditions.BuildFailureOnText
 import jetbrains.buildServer.configs.kotlin.v2017_2.failureConditions.failOnMetricChange
@@ -89,7 +86,28 @@ object DslTest_TestAllRunnersAndSettings : BuildType({
             param("teamcity.coverage.idea.includePatterns", "*.*")
             param("teamcity.coverage.idea.excludePatterns", "*.*")
         }
-
+        gradle {
+            tasks = "clean"
+            gradleHome = "/home/gradle"
+            useGradleWrapper = true
+            gradleWrapperPath = "gradle.bat"
+            enableDebug = true
+            enableStacktrace = true
+            jdkHome = "%env.JDK_18_x64%"
+            jvmArgs = "--cmd"
+            dockerRunParameters = "--rm"
+        }
+        step {
+            type = "ftp-deploy-runner"
+            param("jetbrains.buildServer.deployer.username", "username")
+            param("jetbrains.buildServer.deployer.ftp.authMethod", "USER_PWD")
+            param("jetbrains.buildServer.deployer.ftp.transferMethod", "BINARY")
+            param("jetbrains.buildServer.deployer.sourcePath", "path_deploy")
+            param("jetbrains.buildServer.deployer.targetUrl", "FTP.com")
+            param("secure:jetbrains.buildServer.deployer.password", "credentialsJSON:aec3e622-3d41-49d1-8b55-a5437f433160")
+            param("jetbrains.buildServer.deployer.ftp.ftpMode", "ACTIVE")
+            param("jetbrains.buildServer.deployer.ftp.securityMode", "2")
+        }
     }
 
     triggers {
