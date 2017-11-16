@@ -193,6 +193,12 @@ create("68ed399e-3cdc-4ffd-b638-e13a0b5b709f", BuildType({
             vcsRootExtId = "testjavalibrepo"
             successfulOnly = true
         }
+        feature {
+            type = "xml-report-plugin"
+            param("xmlReportParsing.reportType", "ctest")
+            param("xmlReportParsing.reportDirs", "*.xml")
+            param("xmlReportParsing.verboseOutput", "true")
+        }
     }
 }))
 
