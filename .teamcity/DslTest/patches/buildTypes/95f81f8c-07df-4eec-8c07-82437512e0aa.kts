@@ -92,5 +92,20 @@ changeBuildType("95f81f8c-07df-4eec-8c07-82437512e0aa") {
                 param("jetbrains.buildServer.deployer.cargo.https", "true")
             }
         }
+        insert(6) {
+            step {
+                type = "dotnet-tools-dupfinder"
+                param("dotnet-tools-dupfinder.hashing.discard_local_variables_name", "true")
+                param("dotnet-tools-dupfinder.exclude_files", "**/*.bat")
+                param("dotnet-tools-dupfinder.hashing.discard_types", "true")
+                param("dotnet-tools-dupfinder.hashing.normalize_types", "true")
+                param("dotnet-tools-dupfinder.exclude_by_opening_comment", "sadas")
+                param("dotnet-tools-dupfinder.customCmdArgs", "asdasdasdas")
+                param("dotnet-tools-dupfinder.debug", "true")
+                param("dotnet-tools-dupfinder.exclude_region_message_substring", "asdasdasdas")
+                param("dotnet-tools-dupfinder.hashing.discard_fields_name", "true")
+                param("jetbrains.resharper-clt.clt-path", "%teamcity.tool.jetbrains.resharper-clt.DEFAULT%")
+            }
+        }
     }
 }
