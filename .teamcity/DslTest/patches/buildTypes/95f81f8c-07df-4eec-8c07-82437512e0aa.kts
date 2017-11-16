@@ -107,5 +107,18 @@ changeBuildType("95f81f8c-07df-4eec-8c07-82437512e0aa") {
                 param("jetbrains.resharper-clt.clt-path", "%teamcity.tool.jetbrains.resharper-clt.DEFAULT%")
             }
         }
+        insert(7) {
+            step {
+                type = "ftp-deploy-runner"
+                param("jetbrains.buildServer.deployer.username", "username")
+                param("jetbrains.buildServer.deployer.ftp.authMethod", "USER_PWD")
+                param("jetbrains.buildServer.deployer.ftp.transferMethod", "BINARY")
+                param("jetbrains.buildServer.deployer.sourcePath", "path_deploy")
+                param("jetbrains.buildServer.deployer.targetUrl", "FTP.com")
+                param("secure:jetbrains.buildServer.deployer.password", "credentialsJSON:aec3e622-3d41-49d1-8b55-a5437f433160")
+                param("jetbrains.buildServer.deployer.ftp.ftpMode", "ACTIVE")
+                param("jetbrains.buildServer.deployer.ftp.securityMode", "2")
+            }
+        }
     }
 }
