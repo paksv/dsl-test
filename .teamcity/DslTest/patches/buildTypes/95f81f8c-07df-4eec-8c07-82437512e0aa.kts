@@ -5,6 +5,7 @@ import jetbrains.buildServer.configs.kotlin.v2017_2.*
 import jetbrains.buildServer.configs.kotlin.v2017_2.BuildType
 import jetbrains.buildServer.configs.kotlin.v2017_2.buildSteps.maven
 import jetbrains.buildServer.configs.kotlin.v2017_2.triggers.VcsTrigger
+import jetbrains.buildServer.configs.kotlin.v2017_2.triggers.finishBuildTrigger
 import jetbrains.buildServer.configs.kotlin.v2017_2.triggers.schedule
 import jetbrains.buildServer.configs.kotlin.v2017_2.triggers.vcs
 import jetbrains.buildServer.configs.kotlin.v2017_2.ui.create
@@ -57,6 +58,10 @@ create("68ed399e-3cdc-4ffd-b638-e13a0b5b709f", BuildType({
                 watchedBuildRule = ScheduleTrigger.WatchedBuildRule.LAST_SUCCESSFUL
             }
             param("dayOfWeek", "Sunday")
+        }
+        finishBuildTrigger {
+            buildTypeExtId = "DslTest_Another"
+            successfulOnly = true
         }
     }
 }))
