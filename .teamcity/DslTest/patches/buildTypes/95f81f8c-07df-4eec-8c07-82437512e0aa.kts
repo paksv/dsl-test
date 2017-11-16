@@ -6,6 +6,7 @@ import jetbrains.buildServer.configs.kotlin.v2017_2.BuildType
 import jetbrains.buildServer.configs.kotlin.v2017_2.buildFeatures.Swabra
 import jetbrains.buildServer.configs.kotlin.v2017_2.buildFeatures.commitStatusPublisher
 import jetbrains.buildServer.configs.kotlin.v2017_2.buildFeatures.dockerSupport
+import jetbrains.buildServer.configs.kotlin.v2017_2.buildFeatures.replaceContent
 import jetbrains.buildServer.configs.kotlin.v2017_2.buildFeatures.swabra
 import jetbrains.buildServer.configs.kotlin.v2017_2.buildSteps.maven
 import jetbrains.buildServer.configs.kotlin.v2017_2.failureConditions.BuildFailureOnMetric
@@ -159,6 +160,11 @@ create("68ed399e-3cdc-4ffd-b638-e13a0b5b709f", BuildType({
             loginToRegistry = on {
                 dockerRegistryId = "paksv_docker"
             }
+        }
+        replaceContent {
+            fileRules = "**/AssemblyInfo.cpp"
+            pattern = """(^\s*\[\s*assembly\s*:\s*((System\s*::)?\s*Reflection\s*::)?\s*AssemblyInformationalVersion(Attribute)?\s*\(\s*\")([^\"]*)(\"\s*\)\s*\])"""
+            replacement = """${'$'}1\%build.number%${'$'}6"""
         }
     }
 }))
