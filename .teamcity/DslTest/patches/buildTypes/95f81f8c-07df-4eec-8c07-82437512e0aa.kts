@@ -63,6 +63,10 @@ create("68ed399e-3cdc-4ffd-b638-e13a0b5b709f", BuildType({
             buildTypeExtId = "DslTest_Another"
             successfulOnly = true
         }
+        trigger {
+            type = "remoteRunOnBranch"
+            param("branchy:jetbrains.git", "pattern:jetbrains.git")
+        }
     }
 }))
 
