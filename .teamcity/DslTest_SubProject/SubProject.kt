@@ -26,7 +26,7 @@ object SubProject : Project({
             root("DslTest")
         }
     }))
-    for (i in 1..200){
+    for (i in 1..10){
         val bt = BuildType({
             id = "id$baseNum$i"
             uuid = id
