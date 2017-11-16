@@ -25,6 +25,15 @@ object Project : Project({
     buildType(DepConf)
     buildType(DslTest_TestAllRunnersAndSettings)
 
+    subProject(Project({
+        id="DslTest_Child"
+        uuid = id
+        name = "Child"
+        params{
+            param("param1", "value")
+        }
+    }))
+
     params {
         param("image-name", "sample")
         param("username", "paksv")
