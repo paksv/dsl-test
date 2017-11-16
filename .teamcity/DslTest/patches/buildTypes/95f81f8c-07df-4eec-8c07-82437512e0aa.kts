@@ -4,6 +4,7 @@ import .ScheduleTrigger
 import jetbrains.buildServer.configs.kotlin.v2017_2.*
 import jetbrains.buildServer.configs.kotlin.v2017_2.BuildType
 import jetbrains.buildServer.configs.kotlin.v2017_2.buildFeatures.Swabra
+import jetbrains.buildServer.configs.kotlin.v2017_2.buildFeatures.commitStatusPublisher
 import jetbrains.buildServer.configs.kotlin.v2017_2.buildFeatures.swabra
 import jetbrains.buildServer.configs.kotlin.v2017_2.buildSteps.maven
 import jetbrains.buildServer.configs.kotlin.v2017_2.failureConditions.BuildFailureOnMetric
@@ -142,6 +143,15 @@ create("68ed399e-3cdc-4ffd-b638-e13a0b5b709f", BuildType({
             lockingProcesses = Swabra.LockingProcessPolicy.REPORT
             verbose = true
             paths = "+:*.*"
+        }
+        commitStatusPublisher {
+            vcsRootExtId = "testjavalibrepo"
+            publisher = github {
+                githubUrl = "https://api.github.com"
+                authType = personalToken {
+                    token = "credentialsJSON:dff498f4-90bb-4805-8939-3c71dcd54c44"
+                }
+            }
         }
     }
 }))
