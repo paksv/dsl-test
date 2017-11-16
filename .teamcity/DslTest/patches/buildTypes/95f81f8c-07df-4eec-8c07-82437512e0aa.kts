@@ -3,11 +3,13 @@ package DslTest.patches.buildTypes
 import jetbrains.buildServer.configs.kotlin.v2017_2.*
 import jetbrains.buildServer.configs.kotlin.v2017_2.buildSteps.DotnetCleanStep
 import jetbrains.buildServer.configs.kotlin.v2017_2.buildSteps.MSBuildStep
+import jetbrains.buildServer.configs.kotlin.v2017_2.buildSteps.PowerShellStep
 import jetbrains.buildServer.configs.kotlin.v2017_2.buildSteps.ant
 import jetbrains.buildServer.configs.kotlin.v2017_2.buildSteps.dotnetClean
 import jetbrains.buildServer.configs.kotlin.v2017_2.buildSteps.gradle
 import jetbrains.buildServer.configs.kotlin.v2017_2.buildSteps.maven
 import jetbrains.buildServer.configs.kotlin.v2017_2.buildSteps.msBuild
+import jetbrains.buildServer.configs.kotlin.v2017_2.buildSteps.powerShell
 import jetbrains.buildServer.configs.kotlin.v2017_2.ideaInspections
 import jetbrains.buildServer.configs.kotlin.v2017_2.ui.changeBuildType
 
@@ -97,6 +99,19 @@ changeBuildType("95f81f8c-07df-4eec-8c07-82437512e0aa") {
                 param("jvmArgs", "-Xmx512m -XX:ReservedCodeCacheSize=256m")
                 param("sbt.installationMode", "custom")
                 param("sbt.home", "path_to_scala")
+            }
+        }
+        insert(8) {
+            powerShell {
+                minRequiredVersion = "12.20"
+                platform = PowerShellStep.Platform.x64
+                edition = PowerShellStep.Edition.Desktop
+                formatStderrAsError = true
+                scriptMode = file {
+                    path = "aaa.ps1"
+                }
+                scriptExecMode = PowerShellStep.ExecutionMode.STDIN
+                args = "--rm"
             }
         }
     }
