@@ -10,6 +10,8 @@ import jetbrains.buildServer.configs.kotlin.v2017_2.buildFeatures.freeDiskSpace
 import jetbrains.buildServer.configs.kotlin.v2017_2.buildFeatures.replaceContent
 import jetbrains.buildServer.configs.kotlin.v2017_2.buildFeatures.swabra
 import jetbrains.buildServer.configs.kotlin.v2017_2.buildFeatures.vcsLabeling
+import jetbrains.buildServer.configs.kotlin.v2017_2.buildSteps.DotnetCleanStep
+import jetbrains.buildServer.configs.kotlin.v2017_2.buildSteps.dotnetClean
 import jetbrains.buildServer.configs.kotlin.v2017_2.buildSteps.maven
 import jetbrains.buildServer.configs.kotlin.v2017_2.failureConditions.BuildFailureOnMetric
 import jetbrains.buildServer.configs.kotlin.v2017_2.failureConditions.BuildFailureOnText
@@ -58,6 +60,18 @@ create("68ed399e-3cdc-4ffd-b638-e13a0b5b709f", BuildType({
         maven {
             goals = "clean test"
             mavenVersion = defaultProvidedVersion()
+        }
+        dotnetClean {
+            name = ".NET CLI"
+            projects = "project"
+            workingDir = "workDir"
+            framework = "framework"
+            configuration = "configuration"
+            runtime = "runtime"
+            outputDir = "output"
+            args = "-commandLineParams"
+            logging = DotnetCleanStep.Verbosity.Diagnostic
+            param("dotNetCoverage.dotCover.home.path", "%teamcity.tool.JetBrains.dotCover.CommandLineTools.DEFAULT%")
         }
     }
 
