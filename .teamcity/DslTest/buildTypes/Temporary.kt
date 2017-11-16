@@ -9,7 +9,7 @@ object Temporary : BuildType({
     name = "Temporary"
 
     vcs {
-        root(DslTest.vcsRoots.testjavalibrepo)
+//        root(DslTest.vcsRoots.testjavalibrepo)
 
     }
 

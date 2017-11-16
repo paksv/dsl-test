@@ -10,7 +10,7 @@ object DslTest_Build : BuildType({
     name = "Build"
 
     vcs {
-        root(DslTest.vcsRoots.DslTest_HttpsGithubComPaksvDslTestGitRefsHeadsMaster)
+//        root(DslTest.vcsRoots.DslTest_HttpsGithubComPaksvDslTestGitRefsHeadsMaster)
 
     }
 
