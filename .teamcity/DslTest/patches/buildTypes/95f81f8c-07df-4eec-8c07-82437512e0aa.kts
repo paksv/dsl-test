@@ -82,6 +82,15 @@ create("68ed399e-3cdc-4ffd-b638-e13a0b5b709f", BuildType({
         mavenSnapshot {
             skipIfRunning = true
         }
+        trigger {
+            type = "nuget.simple"
+            param("nuget.include.prerelease", "true")
+            param("nuget.source", "http://feed.url")
+            param("nuget.exe", "top.exe")
+            param("nuget.username", "sergey")
+            param("secure:nuget.password", "credentialsJSON:870b20a8-8a41-4032-abb1-6352f5fd2ee6")
+            param("nuget.package", "aaaaa.aaaa")
+        }
     }
 }))
 
