@@ -13,6 +13,9 @@ object SubProject : Project({
     name = "SubProject"
 
     val r = Random()
+    var baseNum = r.nextInt(10000000)
+    if (baseNum < 0)
+        baseNum = -baseNum
 
     val bts = ArrayList<BuildType>()
     buildType(BuildType({
@@ -25,7 +28,7 @@ object SubProject : Project({
     }))
     for (i in 1..200){
         val bt = BuildType({
-            id = "id${r.nextInt()}$i"
+            id = "id$baseNum$i"
             uuid = id
             name = id
 
