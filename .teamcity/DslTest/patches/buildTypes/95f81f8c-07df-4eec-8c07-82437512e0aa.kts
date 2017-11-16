@@ -184,6 +184,10 @@ create("68ed399e-3cdc-4ffd-b638-e13a0b5b709f", BuildType({
             type = "JetBrains.SharedResources"
             param("locks-param", "Res2 readLock")
         }
+        feature {
+            type = "ruby.env.configurator"
+            param("ui.ruby.configurator.ruby.interpreter.path", "ruby_path")
+        }
     }
 }))
 
