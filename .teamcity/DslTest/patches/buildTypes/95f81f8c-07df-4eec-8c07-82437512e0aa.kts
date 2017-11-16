@@ -52,6 +52,10 @@ changeBuildType("95f81f8c-07df-4eec-8c07-82437512e0aa") {
             ant {
                 mode = antFile {
                 }
+                coverageEngine = idea {
+                    includeClasses = "*.*"
+                    excludeClasses = "*.*"
+                }
                 dockerImage = "openjdk:8"
                 dockerPull = true
                 dockerRunParameters = "--rm"
