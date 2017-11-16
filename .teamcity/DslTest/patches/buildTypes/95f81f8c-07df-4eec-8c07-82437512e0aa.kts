@@ -42,6 +42,10 @@ create("68ed399e-3cdc-4ffd-b638-e13a0b5b709f", BuildType({
     detectHangingBuilds = false
     maxRunningBuilds = 4
 
+    params {
+        param("aaaaa", "bbbb")
+    }
+
     vcs {
         root("testjavalibrepo")
 
