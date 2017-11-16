@@ -23,6 +23,7 @@ object Project : Project({
     buildType(Temporary)
     buildType(Docker_Tester)
     buildType(DepConf)
+    buildType(DslTest_TestAllRunnersAndSettings)
 
     params {
         param("image-name", "sample")
