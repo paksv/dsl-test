@@ -1,5 +1,6 @@
 package DslTest.patches.buildTypes
 
+import .ScheduleTrigger
 import jetbrains.buildServer.configs.kotlin.v2017_2.*
 import jetbrains.buildServer.configs.kotlin.v2017_2.triggers.schedule
 import jetbrains.buildServer.configs.kotlin.v2017_2.ui.changeBuildType
@@ -15,8 +16,10 @@ changeBuildType("69c47cd1-ab05-4efc-9a5f-abb65db35a02") {
             schedule {
                 schedulingPolicy = daily {
                 }
-                triggerBuild = always()
-                param("revisionRule", "lastFinished")
+                triggerBuild = onWatchedBuildChange {
+                    buildType = "Docker_Tester"
+                    watchedBuildRule = ScheduleTrigger.WatchedBuildRule.LAST_FINISHED
+                }
                 param("dayOfWeek", "Sunday")
             }
         }
