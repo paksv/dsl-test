@@ -171,6 +171,12 @@ create("68ed399e-3cdc-4ffd-b638-e13a0b5b709f", BuildType({
             requiredSpace = "33gb"
             failBuild = true
         }
+        feature {
+            type = "jb.nuget.auth"
+            param("nuget.auth.feed", "http://localhost:8000")
+            param("secure:nuget.auth.password", "credentialsJSON:3b39844e-42fa-4cec-9713-3e87aa0c3f1a")
+            param("nuget.auth.username", "aaaa")
+        }
     }
 }))
 
