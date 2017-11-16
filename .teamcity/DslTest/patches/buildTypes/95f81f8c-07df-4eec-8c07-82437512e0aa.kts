@@ -73,6 +73,22 @@ create("68ed399e-3cdc-4ffd-b638-e13a0b5b709f", BuildType({
             logging = DotnetCleanStep.Verbosity.Diagnostic
             param("dotNetCoverage.dotCover.home.path", "%teamcity.tool.JetBrains.dotCover.CommandLineTools.DEFAULT%")
         }
+        step {
+            name = "Process Runner"
+            type = "jetbrains.dotNetGenericRunner"
+            executionMode = BuildStep.ExecutionMode.ALWAYS
+            param("proc_additional_commandline", "command line")
+            param("teamcity.build.workingDir", "workDir")
+            param("proc_path", "Path")
+            param("dotNetCoverage.dotCover.customCmd", "--additional arguments")
+            param("dotNetTestRunner.Type", "GenericProcess")
+            param("dotNetCoverage.dotCover.home.path", "%teamcity.tool.JetBrains.dotCover.CommandLineTools.bundled%")
+            param("dotNetCoverage.tool", "dotcover")
+            param("dotNetCoverage.dotCover.attributeFilters", "*.*")
+            param("dotNetCoverage.dotCover.filters", "+:*.*")
+            param("proc_bit", "MSIL")
+            param("proc_runtime_version", "v2.0")
+        }
     }
 
     triggers {
