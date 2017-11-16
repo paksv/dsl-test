@@ -1,6 +1,5 @@
 package DslTest.patches.buildTypes
 
-import .ScheduleTrigger
 import jetbrains.buildServer.configs.kotlin.v2017_2.*
 import jetbrains.buildServer.configs.kotlin.v2017_2.BuildType
 import jetbrains.buildServer.configs.kotlin.v2017_2.buildFeatures.Swabra
@@ -17,13 +16,7 @@ import jetbrains.buildServer.configs.kotlin.v2017_2.failureConditions.BuildFailu
 import jetbrains.buildServer.configs.kotlin.v2017_2.failureConditions.BuildFailureOnText
 import jetbrains.buildServer.configs.kotlin.v2017_2.failureConditions.failOnMetricChange
 import jetbrains.buildServer.configs.kotlin.v2017_2.failureConditions.failOnText
-import jetbrains.buildServer.configs.kotlin.v2017_2.triggers.VcsTrigger
-import jetbrains.buildServer.configs.kotlin.v2017_2.triggers.finishBuildTrigger
-import jetbrains.buildServer.configs.kotlin.v2017_2.triggers.mavenArtifact
-import jetbrains.buildServer.configs.kotlin.v2017_2.triggers.mavenSnapshot
-import jetbrains.buildServer.configs.kotlin.v2017_2.triggers.retryBuild
-import jetbrains.buildServer.configs.kotlin.v2017_2.triggers.schedule
-import jetbrains.buildServer.configs.kotlin.v2017_2.triggers.vcs
+import jetbrains.buildServer.configs.kotlin.v2017_2.triggers.*
 import jetbrains.buildServer.configs.kotlin.v2017_2.ui.create
 
 /*

@@ -1,7 +1,7 @@
 package DslTest.patches.buildTypes
 
-import .ScheduleTrigger
 import jetbrains.buildServer.configs.kotlin.v2017_2.*
+import jetbrains.buildServer.configs.kotlin.v2017_2.triggers.ScheduleTrigger
 import jetbrains.buildServer.configs.kotlin.v2017_2.triggers.schedule
 import jetbrains.buildServer.configs.kotlin.v2017_2.ui.changeBuildType
 
