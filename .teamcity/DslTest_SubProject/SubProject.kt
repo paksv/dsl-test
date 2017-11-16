@@ -1,7 +1,9 @@
 package DslTest_SubProject
 
+import DslTest.vcsRoots.testjavalibrepo
 import jetbrains.buildServer.configs.kotlin.v2017_2.*
 import jetbrains.buildServer.configs.kotlin.v2017_2.Project
+import jetbrains.buildServer.configs.kotlin.v2017_2.buildSteps.maven
 import jetbrains.buildServer.configs.kotlin.v2017_2.triggers.vcs
 import java.util.*
 import kotlin.collections.ArrayList
@@ -23,7 +25,16 @@ object SubProject : Project({
         uuid = id
         name = id
         vcs {
-            root("DslTest")
+            root("DslTest", ".=>checkout")
+            root(testjavalibrepo, ".=>java")
+        }
+
+        steps{
+            maven {
+                workingDir = "java"
+                pomLocation = "java/pom.xml"
+                dockerImage = "maven:3.5.2-jdk8-alpine"
+            }
         }
     }))
     for (i in 1..10){
