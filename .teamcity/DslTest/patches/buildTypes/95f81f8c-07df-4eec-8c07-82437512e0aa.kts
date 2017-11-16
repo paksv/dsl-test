@@ -9,6 +9,7 @@ import jetbrains.buildServer.configs.kotlin.v2017_2.buildFeatures.dockerSupport
 import jetbrains.buildServer.configs.kotlin.v2017_2.buildFeatures.freeDiskSpace
 import jetbrains.buildServer.configs.kotlin.v2017_2.buildFeatures.replaceContent
 import jetbrains.buildServer.configs.kotlin.v2017_2.buildFeatures.swabra
+import jetbrains.buildServer.configs.kotlin.v2017_2.buildFeatures.vcsLabeling
 import jetbrains.buildServer.configs.kotlin.v2017_2.buildSteps.maven
 import jetbrains.buildServer.configs.kotlin.v2017_2.failureConditions.BuildFailureOnMetric
 import jetbrains.buildServer.configs.kotlin.v2017_2.failureConditions.BuildFailureOnText
@@ -187,6 +188,10 @@ create("68ed399e-3cdc-4ffd-b638-e13a0b5b709f", BuildType({
         feature {
             type = "ruby.env.configurator"
             param("ui.ruby.configurator.ruby.interpreter.path", "ruby_path")
+        }
+        vcsLabeling {
+            vcsRootExtId = "testjavalibrepo"
+            successfulOnly = true
         }
     }
 }))
