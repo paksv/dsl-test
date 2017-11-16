@@ -4,6 +4,7 @@ import jetbrains.buildServer.configs.kotlin.v2017_2.*
 import jetbrains.buildServer.configs.kotlin.v2017_2.buildSteps.DotnetCleanStep
 import jetbrains.buildServer.configs.kotlin.v2017_2.buildSteps.ant
 import jetbrains.buildServer.configs.kotlin.v2017_2.buildSteps.dotnetClean
+import jetbrains.buildServer.configs.kotlin.v2017_2.buildSteps.gradle
 import jetbrains.buildServer.configs.kotlin.v2017_2.buildSteps.maven
 import jetbrains.buildServer.configs.kotlin.v2017_2.ui.changeBuildType
 
@@ -130,6 +131,19 @@ changeBuildType("95f81f8c-07df-4eec-8c07-82437512e0aa") {
                 param("fxcop.ignore_generated_code", "true")
                 param("fxcop.root", "FXCOPP")
                 param("fxcop.files", "*.*")
+            }
+        }
+        insert(9) {
+            gradle {
+                tasks = "clean"
+                gradleHome = "/home/gradle"
+                useGradleWrapper = true
+                gradleWrapperPath = "gradle.bat"
+                enableDebug = true
+                enableStacktrace = true
+                jdkHome = "%env.JDK_18_x64%"
+                jvmArgs = "--cmd"
+                dockerRunParameters = "--rm"
             }
         }
     }
