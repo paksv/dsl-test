@@ -216,5 +216,9 @@ create("68ed399e-3cdc-4ffd-b638-e13a0b5b709f", BuildType({
             artifactRules = "*.*"
         }
     }
+
+    requirements {
+        doesNotExist("aaasfsdgfsadfsd")
+    }
 }))
 
