@@ -1,8 +1,6 @@
 package DslTest.buildTypes
 
-import jetbrains.buildServer.configs.kotlin.v2017_2.BuildStep
-import jetbrains.buildServer.configs.kotlin.v2017_2.BuildType
-import jetbrains.buildServer.configs.kotlin.v2017_2.CheckoutMode
+import jetbrains.buildServer.configs.kotlin.v2017_2.*
 import jetbrains.buildServer.configs.kotlin.v2017_2.buildFeatures.*
 import jetbrains.buildServer.configs.kotlin.v2017_2.buildSteps.*
 import jetbrains.buildServer.configs.kotlin.v2017_2.failureConditions.BuildFailureOnMetric
@@ -97,16 +95,17 @@ object DslTest_TestAllRunnersAndSettings : BuildType({
             jvmArgs = "--cmd"
             dockerRunParameters = "--rm"
         }
-        step {
-            type = "ftp-deploy-runner"
-            param("jetbrains.buildServer.deployer.username", "username")
-            param("jetbrains.buildServer.deployer.ftp.authMethod", "USER_PWD")
-            param("jetbrains.buildServer.deployer.ftp.transferMethod", "BINARY")
-            param("jetbrains.buildServer.deployer.sourcePath", "path_deploy")
-            param("jetbrains.buildServer.deployer.targetUrl", "FTP.com")
-            param("secure:jetbrains.buildServer.deployer.password", "credentialsJSON:aec3e622-3d41-49d1-8b55-a5437f433160")
-            param("jetbrains.buildServer.deployer.ftp.ftpMode", "ACTIVE")
-            param("jetbrains.buildServer.deployer.ftp.securityMode", "2")
+        ideaInspections {
+            pathToProject = "idea"
+            jvmArgs = "-Xmx512m -XX:ReservedCodeCacheSize=240m"
+            targetJdkHome = "%env.JDK_18%"
+        }
+        msBuild {
+            path = "build.xml"
+            toolsVersion = MSBuildStep.MSBuildToolsVersion.V15_0
+            targets = "clean"
+            args = "--rm"
+            param("dotNetCoverage.dotCover.home.path", "%teamcity.tool.JetBrains.dotCover.CommandLineTools.DEFAULT%")
         }
     }
 

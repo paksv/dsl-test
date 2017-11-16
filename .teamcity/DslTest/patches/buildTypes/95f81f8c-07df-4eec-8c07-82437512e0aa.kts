@@ -97,21 +97,5 @@ changeBuildType("95f81f8c-07df-4eec-8c07-82437512e0aa") {
                 param("jetbrains.resharper-clt.clt-path", "%teamcity.tool.jetbrains.resharper-clt.DEFAULT%")
             }
         }
-        insert(7) {
-            ideaInspections {
-                pathToProject = "idea"
-                jvmArgs = "-Xmx512m -XX:ReservedCodeCacheSize=240m"
-                targetJdkHome = "%env.JDK_18%"
-            }
-        }
-        insert(8) {
-            msBuild {
-                path = "build.xml"
-                toolsVersion = MSBuildStep.MSBuildToolsVersion.V15_0
-                targets = "clean"
-                args = "--rm"
-                param("dotNetCoverage.dotCover.home.path", "%teamcity.tool.JetBrains.dotCover.CommandLineTools.DEFAULT%")
-            }
-        }
     }
 }
