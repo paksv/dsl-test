@@ -3,12 +3,14 @@ package DslTest.patches.buildTypes
 import jetbrains.buildServer.configs.kotlin.v2017_2.*
 import jetbrains.buildServer.configs.kotlin.v2017_2.buildSteps.DotnetCleanStep
 import jetbrains.buildServer.configs.kotlin.v2017_2.buildSteps.MSBuildStep
+import jetbrains.buildServer.configs.kotlin.v2017_2.buildSteps.NUnitStep
 import jetbrains.buildServer.configs.kotlin.v2017_2.buildSteps.PowerShellStep
 import jetbrains.buildServer.configs.kotlin.v2017_2.buildSteps.ant
 import jetbrains.buildServer.configs.kotlin.v2017_2.buildSteps.dotnetClean
 import jetbrains.buildServer.configs.kotlin.v2017_2.buildSteps.gradle
 import jetbrains.buildServer.configs.kotlin.v2017_2.buildSteps.maven
 import jetbrains.buildServer.configs.kotlin.v2017_2.buildSteps.msBuild
+import jetbrains.buildServer.configs.kotlin.v2017_2.buildSteps.nunit
 import jetbrains.buildServer.configs.kotlin.v2017_2.buildSteps.powerShell
 import jetbrains.buildServer.configs.kotlin.v2017_2.ideaInspections
 import jetbrains.buildServer.configs.kotlin.v2017_2.ui.changeBuildType
@@ -112,6 +114,20 @@ changeBuildType("95f81f8c-07df-4eec-8c07-82437512e0aa") {
                 }
                 scriptExecMode = PowerShellStep.ExecutionMode.STDIN
                 args = "--rm"
+            }
+        }
+        insert(9) {
+            nunit {
+                nunitPath = "22.22"
+                runtimeVersion = NUnitStep.RuntimeVersion.v4_0
+                includeTests = "*.*"
+                excludeTests = "exclude/**"
+                includeCategories = "include/**"
+                excludeCategories = "exclude_cat/**"
+                reduceTestFeedback = true
+                param("dotNetCoverage.dotCover.home.path", "%teamcity.tool.JetBrains.dotCover.CommandLineTools.DEFAULT%")
+                param("nunit_command_line", "--rm")
+                param("nunit_app_config_file", "config.config")
             }
         }
     }
