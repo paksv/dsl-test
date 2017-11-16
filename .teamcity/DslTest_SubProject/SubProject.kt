@@ -2,6 +2,7 @@ package DslTest_SubProject
 
 import jetbrains.buildServer.configs.kotlin.v2017_2.*
 import jetbrains.buildServer.configs.kotlin.v2017_2.Project
+import jetbrains.buildServer.configs.kotlin.v2017_2.triggers.vcs
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -46,6 +47,16 @@ object SubProject : Project({
             for (bt in bts){
                 snapshot(bt, {})
             }
+        }
+
+        triggers {
+            vcs {
+                watchChangesInDependencies = true
+            }
+        }
+
+        vcs{
+            showDependenciesChanges = true
         }
     }))
 })
