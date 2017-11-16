@@ -5,5 +5,5 @@ object SubProject : Project({
     uuid="SubProjectTrash"
     id=uuid
     name = "Trash Project"
-    parentId = DslTestProject.id
+    parentId = "DslTest"
 })
