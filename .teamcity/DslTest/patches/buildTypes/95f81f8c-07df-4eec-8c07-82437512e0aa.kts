@@ -103,6 +103,11 @@ create("68ed399e-3cdc-4ffd-b638-e13a0b5b709f", BuildType({
     }
 
     failureConditions {
+        executionTimeoutMin = 5
+        testFailure = false
+        nonZeroExitCode = false
+        javaCrash = false
+        errorMessage = true
         failOnMetricChange {
             metric = BuildFailureOnMetric.MetricType.ARTIFACT_SIZE
             units = BuildFailureOnMetric.MetricUnit.DEFAULT_UNIT
