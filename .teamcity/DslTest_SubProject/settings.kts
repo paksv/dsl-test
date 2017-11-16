@@ -1,4 +1,4 @@
-package DslTest
+package DslTest_SubProject
 
 import jetbrains.buildServer.configs.kotlin.v2017_2.*
 
@@ -34,4 +34,4 @@ the debug options is available in the context menu for the task.
 */
 
 version = "2017.1"
-project(DslTest.Project)
+project(DslTest_SubProject.Project)

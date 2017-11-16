@@ -8,11 +8,6 @@ object Temporary : BuildType({
     id = "Temporary"
     name = "Temporary"
 
-    vcs {
-//        root(DslTest.vcsRoots.testjavalibrepo)
-
-    }
-
     steps {
         maven {
             goals = "validate"

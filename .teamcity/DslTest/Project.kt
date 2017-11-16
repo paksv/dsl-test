@@ -2,14 +2,13 @@ package DslTest
 
 import DslTest.buildTypes.*
 import DslTest.vcsRoots.*
-import DslTest.vcsRoots.DslTest_HttpsGithubComPaksvDslTestGitRefsHeadsMaster
 import jetbrains.buildServer.configs.kotlin.v2017_2.*
 import jetbrains.buildServer.configs.kotlin.v2017_2.Project
 import jetbrains.buildServer.configs.kotlin.v2017_2.projectFeatures.VersionedSettings
 import jetbrains.buildServer.configs.kotlin.v2017_2.projectFeatures.dockerRegistry
 import jetbrains.buildServer.configs.kotlin.v2017_2.projectFeatures.versionedSettings
 
-object DslTestProject : Project({
+object Project : Project({
     uuid = "68ed399e-3cdc-4ffd-b638-e13a0b5b709f"
     id = "DslTest"
     parentId = "_Root"
@@ -25,8 +24,6 @@ object DslTestProject : Project({
     buildType(Docker_Tester)
     buildType(DepConf)
 
-    project(SubProject)
-
     params {
         param("image-name", "sample")
         param("username", "paksv")
@@ -37,7 +34,7 @@ object DslTestProject : Project({
             id = "PROJECT_EXT_2"
             mode = VersionedSettings.Mode.ENABLED
             buildSettingsMode = VersionedSettings.BuildSettingsMode.PREFER_SETTINGS_FROM_VCS
-            rootExtId = DslTest_HttpsGithubComPaksvDslTestGitRefsHeadsMaster.extId
+            rootExtId = "DslTest"
             showChanges = true
             settingsFormat = VersionedSettings.Format.KOTLIN
             storeSecureParamsOutsideOfVcs = true
@@ -54,7 +51,7 @@ object DslTestProject : Project({
             name = "Docker Registry - paksv"
             url = "https://docker.io"
             userName = "paksv"
-            password = "credentialsJSON:ed7ae30f-c857-4ea3-b21c-804bf3868768"
+            password = "credentialsJSON:a0dbf166-e2f1-4340-b014-48b243b07cce"
         }
     }
 })

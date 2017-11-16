@@ -9,11 +9,6 @@ object DslTest_Build : BuildType({
     id = "DslTest_Build"
     name = "Build"
 
-    vcs {
-//        root(DslTest.vcsRoots.DslTest_HttpsGithubComPaksvDslTestGitRefsHeadsMaster)
-
-    }
-
     steps {
         script {
             scriptContent = "echo Hello 2 from here"
