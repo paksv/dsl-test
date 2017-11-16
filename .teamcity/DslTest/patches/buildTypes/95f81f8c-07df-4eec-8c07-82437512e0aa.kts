@@ -126,5 +126,14 @@ create("68ed399e-3cdc-4ffd-b638-e13a0b5b709f", BuildType({
             stopBuildOnFailure = true
         }
     }
+
+    features {
+        feature {
+            type = "JetBrains.AssemblyInfo"
+            param("file-format", "aaaa")
+            param("patch-global-assembly-info", "true")
+            param("info-format", "bbbb")
+        }
+    }
 }))
 
