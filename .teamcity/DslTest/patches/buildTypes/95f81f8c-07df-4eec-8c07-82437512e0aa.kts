@@ -206,6 +206,11 @@ create("68ed399e-3cdc-4ffd-b638-e13a0b5b709f", BuildType({
             snapshot {
             }
         }
+        artifacts("DslTest_Build") {
+            buildRule = tag("aaa")
+            cleanDestination = true
+            artifactRules = "*.*"
+        }
     }
 }))
 
