@@ -12,7 +12,7 @@ object Docker_Tester : BuildType({
     name = "Docker Tester"
 
     vcs {
-        root(nadia_docker)
+//        root(nadia_docker)
 
     }
 
