@@ -2,10 +2,12 @@ package DslTest.patches.buildTypes
 
 import jetbrains.buildServer.configs.kotlin.v2017_2.*
 import jetbrains.buildServer.configs.kotlin.v2017_2.buildSteps.DotnetCleanStep
+import jetbrains.buildServer.configs.kotlin.v2017_2.buildSteps.MSBuildStep
 import jetbrains.buildServer.configs.kotlin.v2017_2.buildSteps.ant
 import jetbrains.buildServer.configs.kotlin.v2017_2.buildSteps.dotnetClean
 import jetbrains.buildServer.configs.kotlin.v2017_2.buildSteps.gradle
 import jetbrains.buildServer.configs.kotlin.v2017_2.buildSteps.maven
+import jetbrains.buildServer.configs.kotlin.v2017_2.buildSteps.msBuild
 import jetbrains.buildServer.configs.kotlin.v2017_2.ideaInspections
 import jetbrains.buildServer.configs.kotlin.v2017_2.ui.changeBuildType
 
@@ -100,6 +102,15 @@ changeBuildType("95f81f8c-07df-4eec-8c07-82437512e0aa") {
                 pathToProject = "idea"
                 jvmArgs = "-Xmx512m -XX:ReservedCodeCacheSize=240m"
                 targetJdkHome = "%env.JDK_18%"
+            }
+        }
+        insert(8) {
+            msBuild {
+                path = "build.xml"
+                toolsVersion = MSBuildStep.MSBuildToolsVersion.V15_0
+                targets = "clean"
+                args = "--rm"
+                param("dotNetCoverage.dotCover.home.path", "%teamcity.tool.JetBrains.dotCover.CommandLineTools.DEFAULT%")
             }
         }
     }
