@@ -14,6 +14,14 @@ create("68ed399e-3cdc-4ffd-b638-e13a0b5b709f", BuildType({
     uuid = "95f81f8c-07df-4eec-8c07-82437512e0aa"
     id = "DslTest_TestAllRunnersAndSettings"
     name = "Test All Runners and Settings"
+    description = "descriptuion"
+
+    allowExternalStatus = true
+    enablePersonalBuilds = false
+    artifactRules = "*.*"
+    buildNumberPattern = "id-%build.counter%"
+    detectHangingBuilds = false
+    maxRunningBuilds = 4
 
     vcs {
         root("testjavalibrepo")
