@@ -3,6 +3,8 @@ package DslTest.patches.buildTypes
 import .ScheduleTrigger
 import jetbrains.buildServer.configs.kotlin.v2017_2.*
 import jetbrains.buildServer.configs.kotlin.v2017_2.BuildType
+import jetbrains.buildServer.configs.kotlin.v2017_2.buildFeatures.Swabra
+import jetbrains.buildServer.configs.kotlin.v2017_2.buildFeatures.swabra
 import jetbrains.buildServer.configs.kotlin.v2017_2.buildSteps.maven
 import jetbrains.buildServer.configs.kotlin.v2017_2.failureConditions.BuildFailureOnMetric
 import jetbrains.buildServer.configs.kotlin.v2017_2.failureConditions.BuildFailureOnText
@@ -133,6 +135,13 @@ create("68ed399e-3cdc-4ffd-b638-e13a0b5b709f", BuildType({
             param("file-format", "aaaa")
             param("patch-global-assembly-info", "true")
             param("info-format", "bbbb")
+        }
+        swabra {
+            filesCleanup = Swabra.FilesCleanup.AFTER_BUILD
+            forceCleanCheckout = true
+            lockingProcesses = Swabra.LockingProcessPolicy.REPORT
+            verbose = true
+            paths = "+:*.*"
         }
     }
 }))
