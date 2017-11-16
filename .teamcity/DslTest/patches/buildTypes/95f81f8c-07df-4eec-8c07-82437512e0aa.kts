@@ -63,5 +63,23 @@ changeBuildType("95f81f8c-07df-4eec-8c07-82437512e0aa") {
                 dockerRunParameters = "--rm"
             }
         }
+        insert(4) {
+            ant {
+                mode = antScript {
+                    content = "contest"
+                }
+                targets = "clean"
+                jdkHome = "/mnt/jdk"
+                jvmArgs = "--Xmx512M"
+                coverageEngine = jacoco {
+                    classLocations = "+:everything"
+                }
+                dockerImage = "openjdk:8"
+                dockerPull = true
+                dockerRunParameters = "--rm"
+                param("teamcity.coverage.idea.includePatterns", "*.*")
+                param("teamcity.coverage.idea.excludePatterns", "*.*")
+            }
+        }
     }
 }
