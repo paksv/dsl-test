@@ -50,7 +50,8 @@ changeBuildType("95f81f8c-07df-4eec-8c07-82437512e0aa") {
     steps {
         insert(3) {
             ant {
-                mode = antFile {
+                mode = antScript {
+                    content = "contest"
                 }
                 jvmArgs = "--Xmx512M"
                 coverageEngine = idea {
