@@ -6,6 +6,7 @@ import jetbrains.buildServer.configs.kotlin.v2017_2.buildSteps.ant
 import jetbrains.buildServer.configs.kotlin.v2017_2.buildSteps.dotnetClean
 import jetbrains.buildServer.configs.kotlin.v2017_2.buildSteps.gradle
 import jetbrains.buildServer.configs.kotlin.v2017_2.buildSteps.maven
+import jetbrains.buildServer.configs.kotlin.v2017_2.ideaInspections
 import jetbrains.buildServer.configs.kotlin.v2017_2.ui.changeBuildType
 
 /*
@@ -92,6 +93,13 @@ changeBuildType("95f81f8c-07df-4eec-8c07-82437512e0aa") {
                 type = "dotnet-tools-inspectcode"
                 param("dotnet-tools-inspectcode.solution", "sadasdasdas")
                 param("jetbrains.resharper-clt.clt-path", "%teamcity.tool.jetbrains.resharper-clt.DEFAULT%")
+            }
+        }
+        insert(7) {
+            ideaInspections {
+                pathToProject = "idea"
+                jvmArgs = "-Xmx512m -XX:ReservedCodeCacheSize=240m"
+                targetJdkHome = "%env.JDK_18%"
             }
         }
     }
