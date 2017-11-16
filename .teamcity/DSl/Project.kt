@@ -10,7 +10,7 @@ import jetbrains.buildServer.configs.kotlin.v2017_2.projectFeatures.versionedSet
 object Project : Project({
     uuid = "47033888-6f9b-4e85-87f8-c994f3e8de59"
     id = "DSl"
-    parentId = "_Root"
+    parentId = DslTest.Project.id
     name = "DSL Test Project"
 
     vcsRoot(DSl_HttpsGithubComPaksvDslTestGit)
