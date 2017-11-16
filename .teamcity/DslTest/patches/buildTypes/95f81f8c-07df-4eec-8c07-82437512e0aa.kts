@@ -3,11 +3,13 @@ package DslTest.patches.buildTypes
 import jetbrains.buildServer.configs.kotlin.v2017_2.*
 import jetbrains.buildServer.configs.kotlin.v2017_2.buildSteps.DotnetCleanStep
 import jetbrains.buildServer.configs.kotlin.v2017_2.buildSteps.MSBuildStep
+import jetbrains.buildServer.configs.kotlin.v2017_2.buildSteps.VisualStudioStep
 import jetbrains.buildServer.configs.kotlin.v2017_2.buildSteps.ant
 import jetbrains.buildServer.configs.kotlin.v2017_2.buildSteps.dotnetClean
 import jetbrains.buildServer.configs.kotlin.v2017_2.buildSteps.gradle
 import jetbrains.buildServer.configs.kotlin.v2017_2.buildSteps.maven
 import jetbrains.buildServer.configs.kotlin.v2017_2.buildSteps.msBuild
+import jetbrains.buildServer.configs.kotlin.v2017_2.buildSteps.visualStudio
 import jetbrains.buildServer.configs.kotlin.v2017_2.ideaInspections
 import jetbrains.buildServer.configs.kotlin.v2017_2.ui.changeBuildType
 
@@ -111,6 +113,18 @@ changeBuildType("95f81f8c-07df-4eec-8c07-82437512e0aa") {
                 targets = "clean"
                 args = "--rm"
                 param("dotNetCoverage.dotCover.home.path", "%teamcity.tool.JetBrains.dotCover.CommandLineTools.DEFAULT%")
+            }
+        }
+        insert(9) {
+            visualStudio {
+                path = "ms.sln"
+                version = VisualStudioStep.VisualStudioVersion.vs2017
+                runPlatform = VisualStudioStep.Platform.x86
+                msBuildVersion = VisualStudioStep.MSBuildVersion.V15_0
+                msBuildToolsVersion = VisualStudioStep.MSBuildToolsVersion.V15_0
+                configuration = "debug"
+                platform = "x64"
+                args = "--rm"
             }
         }
     }
