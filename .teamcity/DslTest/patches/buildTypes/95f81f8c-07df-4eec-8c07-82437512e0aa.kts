@@ -5,7 +5,9 @@ import jetbrains.buildServer.configs.kotlin.v2017_2.*
 import jetbrains.buildServer.configs.kotlin.v2017_2.BuildType
 import jetbrains.buildServer.configs.kotlin.v2017_2.buildSteps.maven
 import jetbrains.buildServer.configs.kotlin.v2017_2.failureConditions.BuildFailureOnMetric
+import jetbrains.buildServer.configs.kotlin.v2017_2.failureConditions.BuildFailureOnText
 import jetbrains.buildServer.configs.kotlin.v2017_2.failureConditions.failOnMetricChange
+import jetbrains.buildServer.configs.kotlin.v2017_2.failureConditions.failOnText
 import jetbrains.buildServer.configs.kotlin.v2017_2.triggers.VcsTrigger
 import jetbrains.buildServer.configs.kotlin.v2017_2.triggers.finishBuildTrigger
 import jetbrains.buildServer.configs.kotlin.v2017_2.triggers.mavenArtifact
@@ -110,6 +112,13 @@ create("68ed399e-3cdc-4ffd-b638-e13a0b5b709f", BuildType({
             }
             stopBuildOnFailure = true
             param("metricThreshold", "20MB")
+        }
+        failOnText {
+            conditionType = BuildFailureOnText.ConditionType.CONTAINS
+            pattern = "UBER TEST"
+            failureMessage = "UBER TEST detected"
+            reverse = false
+            stopBuildOnFailure = true
         }
     }
 }))
