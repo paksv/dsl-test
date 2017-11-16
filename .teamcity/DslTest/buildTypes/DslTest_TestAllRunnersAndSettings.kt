@@ -5,6 +5,7 @@ import jetbrains.buildServer.configs.kotlin.v2017_2.BuildType
 import jetbrains.buildServer.configs.kotlin.v2017_2.CheckoutMode
 import jetbrains.buildServer.configs.kotlin.v2017_2.buildFeatures.*
 import jetbrains.buildServer.configs.kotlin.v2017_2.buildSteps.DotnetCleanStep
+import jetbrains.buildServer.configs.kotlin.v2017_2.buildSteps.ant
 import jetbrains.buildServer.configs.kotlin.v2017_2.buildSteps.dotnetClean
 import jetbrains.buildServer.configs.kotlin.v2017_2.buildSteps.maven
 import jetbrains.buildServer.configs.kotlin.v2017_2.failureConditions.BuildFailureOnMetric
@@ -71,6 +72,24 @@ object DslTest_TestAllRunnersAndSettings : BuildType({
             param("proc_bit", "MSIL")
             param("proc_runtime_version", "v2.0")
         }
+
+        ant {
+            mode = antScript {
+                content = "contest"
+            }
+            targets = "clean"
+            jdkHome = "/mnt/jdk"
+            jvmArgs = "--Xmx512M"
+            coverageEngine = jacoco {
+                classLocations = "+:everything"
+            }
+            dockerImage = "openjdk:8"
+            dockerPull = true
+            dockerRunParameters = "--rm"
+            param("teamcity.coverage.idea.includePatterns", "*.*")
+            param("teamcity.coverage.idea.excludePatterns", "*.*")
+        }
+
     }
 
     triggers {
