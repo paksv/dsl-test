@@ -24,8 +24,6 @@ object Project : Project({
     buildType(Docker_Tester)
     buildType(DepConf)
 
-    project(DSl.Project)
-
     params {
         param("image-name", "sample")
         param("username", "paksv")
