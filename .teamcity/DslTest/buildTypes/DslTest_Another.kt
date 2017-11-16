@@ -18,4 +18,9 @@ object DslTest_Another : BuildType({
             }
         }
     }
+
+    cleanup {
+        artifacts(builds = 1, days = 1)
+        preventDependencyCleanup = false
+    }
 })
