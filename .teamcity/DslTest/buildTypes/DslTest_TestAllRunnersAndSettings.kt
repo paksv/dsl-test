@@ -128,7 +128,6 @@ object DslTest_TestAllRunnersAndSettings : BuildType({
         }
         trigger {
             type = "nuget.simple"
-            param("nuget.source", "http://feed.url")
             param("nuget.exe", "top.exe")
             param("nuget.username", "sergey")
             param("secure:nuget.password", "credentialsJSON:870b20a8-8a41-4032-abb1-6352f5fd2ee6")
