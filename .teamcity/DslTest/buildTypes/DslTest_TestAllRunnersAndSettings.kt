@@ -169,7 +169,6 @@ object DslTest_TestAllRunnersAndSettings : BuildType({
     features {
         feature {
             type = "JetBrains.AssemblyInfo"
-            param("file-format", "aaaa")
             param("patch-global-assembly-info", "true")
             param("info-format", "bbbb")
         }
