@@ -51,22 +51,6 @@ object DslTest_TestAllRunnersAndSettings : BuildType({
             logging = DotnetCleanStep.Verbosity.Diagnostic
             param("dotNetCoverage.dotCover.home.path", "%teamcity.tool.JetBrains.dotCover.CommandLineTools.DEFAULT%")
         }
-        step {
-            name = "Process Runner"
-            type = "jetbrains.dotNetGenericRunner"
-            executionMode = BuildStep.ExecutionMode.ALWAYS
-            param("proc_additional_commandline", "command line")
-            param("teamcity.build.workingDir", "workDir")
-            param("proc_path", "Path")
-            param("dotNetCoverage.dotCover.customCmd", "--additional arguments")
-            param("dotNetTestRunner.Type", "GenericProcess")
-            param("dotNetCoverage.dotCover.home.path", "%teamcity.tool.JetBrains.dotCover.CommandLineTools.bundled%")
-            param("dotNetCoverage.tool", "dotcover")
-            param("dotNetCoverage.dotCover.attributeFilters", "*.*")
-            param("dotNetCoverage.dotCover.filters", "+:*.*")
-            param("proc_bit", "MSIL")
-            param("proc_runtime_version", "v2.0")
-        }
 
         ant {
             mode = antScript {
