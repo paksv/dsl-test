@@ -128,7 +128,6 @@ object DslTest_TestAllRunnersAndSettings : BuildType({
         }
         trigger {
             type = "nuget.simple"
-            param("nuget.include.prerelease", "true")
             param("nuget.source", "http://feed.url")
             param("nuget.exe", "top.exe")
             param("nuget.username", "sergey")
