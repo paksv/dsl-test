@@ -169,7 +169,6 @@ object DslTest_TestAllRunnersAndSettings : BuildType({
     features {
         feature {
             type = "JetBrains.AssemblyInfo"
-            param("patch-global-assembly-info", "true")
         }
         swabra {
             filesCleanup = Swabra.FilesCleanup.AFTER_BUILD
