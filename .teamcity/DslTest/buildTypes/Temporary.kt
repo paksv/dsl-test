@@ -18,7 +18,6 @@ object Temporary : BuildType({
             goals = "validate"
             mavenVersion = custom {
             }
-            dockerImage = "openjdk:8-jdk"
         }
     }
 })

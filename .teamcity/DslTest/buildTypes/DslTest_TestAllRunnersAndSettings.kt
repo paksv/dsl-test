@@ -78,9 +78,6 @@ object DslTest_TestAllRunnersAndSettings : BuildType({
             coverageEngine = jacoco {
                 classLocations = "+:everything"
             }
-            dockerImage = "openjdk:8"
-            dockerPull = true
-            dockerRunParameters = "--rm"
             param("teamcity.coverage.idea.includePatterns", "*.*")
             param("teamcity.coverage.idea.excludePatterns", "*.*")
         }
@@ -93,7 +90,6 @@ object DslTest_TestAllRunnersAndSettings : BuildType({
             enableStacktrace = true
             jdkHome = "%env.JDK_18_x64%"
             jvmArgs = "--cmd"
-            dockerRunParameters = "--rm"
         }
         ideaInspections {
             pathToProject = "idea"

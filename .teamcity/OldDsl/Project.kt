@@ -12,7 +12,7 @@ object Project : Project({
     uuid = "4be8ce56-d73c-46cf-bc6d-b38fb724948c"
     extId = "OldDsl"
     parentId = "_Root"
-    name = "OldDsl"
+    name = "Old Dsl"
 
     vcsRoot(OldDsl_HttpsGithubComPaksvTestJavaLibRepoGit)
 

@@ -33,8 +33,6 @@ object SubProject : Project({
             maven {
                 workingDir = "java"
                 pomLocation = "java/pom.xml"
-                dockerImage = "maven:3.5.2-jdk-8-alpine"
-                dockerPull = true
             }
         }
     }))
