@@ -204,23 +204,6 @@ object DslTest_TestAllRunnersAndSettings : BuildType({
             requiredSpace = "33gb"
             failBuild = true
         }
-        feature {
-            type = "jb.nuget.auth"
-            param("nuget.auth.feed", "http://localhost:8000")
-            param("secure:nuget.auth.password", "credentialsJSON:3b39844e-42fa-4cec-9713-3e87aa0c3f1a")
-            param("nuget.auth.username", "aaaa")
-        }
-        feature {
-            type = "perfmon"
-        }
-        feature {
-            type = "JetBrains.SharedResources"
-            param("locks-param", "Res2 readLock")
-        }
-        feature {
-            type = "ruby.env.configurator"
-            param("ui.ruby.configurator.ruby.interpreter.path", "ruby_path")
-        }
         vcsLabeling {
             vcsRootExtId = "testjavalibrepo"
             successfulOnly = true
