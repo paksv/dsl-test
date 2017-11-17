@@ -209,12 +209,6 @@ object DslTest_TestAllRunnersAndSettings : BuildType({
             successfulOnly = true
             labelingPattern = "aaaa"
         }
-        feature {
-            type = "xml-report-plugin"
-            param("xmlReportParsing.reportType", "ctest")
-            param("xmlReportParsing.reportDirs", "*.xml")
-            param("xmlReportParsing.verboseOutput", "true")
-        }
     }
 
     dependencies {
