@@ -7,5 +7,5 @@ object nadia_docker : GitVcsRoot({
     uuid = "nadia_docker"
     id = "nadia_docker"
     name = "Nadia Docker"
-    url = "https://github.com/burnasheva/docker_tutorial.git"
+    url = "https://github.com/paksv/docker_tutorial.git"
 })
