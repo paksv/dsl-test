@@ -2,6 +2,7 @@ package DslTest.patches.buildTypes
 
 import jetbrains.buildServer.configs.kotlin.v2017_2.*
 import jetbrains.buildServer.configs.kotlin.v2017_2.buildSteps.DockerBuildStep
+import jetbrains.buildServer.configs.kotlin.v2017_2.buildSteps.ScriptBuildStep
 import jetbrains.buildServer.configs.kotlin.v2017_2.buildSteps.dockerBuild
 import jetbrains.buildServer.configs.kotlin.v2017_2.buildSteps.script
 import jetbrains.buildServer.configs.kotlin.v2017_2.ui.*
@@ -33,6 +34,9 @@ changeBuildType("Docker_Tester") {
             source = path {
             }
             namesAndTags = "%username%/%image-name%:%teamcity.build.id%"
+        }
+        update<ScriptBuildStep>(1) {
+            scriptContent = "docker push %username%/%image-name%:%teamcity.build.id%"
         }
     }
 }
