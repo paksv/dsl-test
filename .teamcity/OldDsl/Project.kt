@@ -4,6 +4,7 @@ import OldDsl.buildTypes.*
 import OldDsl.vcsRoots.*
 import jetbrains.buildServer.configs.kotlin.v10.*
 import jetbrains.buildServer.configs.kotlin.v10.Project
+import jetbrains.buildServer.configs.kotlin.v10.buildSteps.maven
 import jetbrains.buildServer.configs.kotlin.v10.projectFeatures.VersionedSettings
 import jetbrains.buildServer.configs.kotlin.v10.projectFeatures.VersionedSettings.*
 import jetbrains.buildServer.configs.kotlin.v10.projectFeatures.versionedSettings
@@ -17,6 +18,18 @@ object Project : Project({
     vcsRoot(OldDsl_HttpsGithubComPaksvTestJavaLibRepoGit)
 
     buildType(OldDsl_OneConf)
+    for (i in 1..5) {
+        buildType(BuildType({
+            uuid = "aaaa"
+            extId = "aaa"
+            name = "My Conf"
+            steps{
+                maven{
+
+                }
+            }
+        }))
+    }
 
     features {
         versionedSettings {
