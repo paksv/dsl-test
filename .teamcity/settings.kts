@@ -29,6 +29,8 @@ project {
     description = "Lots of DSL objects in here"
 
     buildType(SomeConfiguration)
+
+    subProject(SubProject)
 }
 
 object SomeConfiguration : BuildType({
@@ -40,4 +42,22 @@ object SomeConfiguration : BuildType({
             scriptContent = "echo Test #1"
         }
     }
+})
+
+
+object SubProject : Project({
+    name = "SubProject"
+
+    subProject(SubProject_SubProject)
+})
+
+
+object SubProject_SubProject : Project({
+    name = "SubProject"
+
+    buildType(SubProject_SubProject_Confff)
+})
+
+object SubProject_SubProject_Confff : BuildType({
+    name = "Confff"
 })
