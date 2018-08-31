@@ -27,41 +27,17 @@ version = "2018.1"
 
 project {
     description = "Lots of DSL objects in here"
-    for (i in 1..100){
-        buildType {
-            id("bt$i")
-            name = "Build configuration #$i"
-            steps {
-                for (j in 1..5) {
-                    script {
-                        name = "Some step #$j"
-                        scriptContent = "echo Test #$j"
-                    }
-                }
-            }
 
+    buildType(SomeConfiguration)
+}
+
+object SomeConfiguration : BuildType({
+    name = "Some Configuration"
+
+    steps {
+        script {
+            name = "Some step"
+            scriptContent = "echo Test #1"
         }
     }
-    for (k in 1..100){
-        jetbrains.buildServer.configs.kotlin.v2018_1.ui.create(DslContext.projectId, Project {
-            id("subproject_$k")
-            name = "SubProject #$k"
-            for (i in 1..100) {
-                buildType {
-                    id("bt$i")
-                    name = "Build configuration #$i"
-                    steps {
-                        for (j in 1..5) {
-                            script {
-                                name = "Some step #$j"
-                                scriptContent = "echo Test #$j"
-                            }
-                        }
-                    }
-
-                }
-            }
-        })
-
-    }
-}
+})
