@@ -48,14 +48,15 @@ object SomeConfiguration : BuildType({
 object SubProject : Project({
     name = "SubProject"
 
-    subProject(Project({
-        name = "SubProject"
-
-        buildType(SubProject_SubProject_Confff)
-    }))
+    subProject(SubProject_SubProject)
 })
 
 
+object SubProject_SubProject : Project({
+    name = "SubProject"
+
+    buildType(SubProject_SubProject_Confff)
+})
 
 object SubProject_SubProject_Confff : BuildType({
     name = "Confff"
