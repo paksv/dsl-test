@@ -43,10 +43,10 @@ project {
         }
     }
     for (k in 1..100){
-        project {
+        jetbrains.buildServer.configs.kotlin.v2018_1.ui.create(DslContext.projectId, Project {
             id("subproject_$k")
             name = "SubProject #$k"
-            for (i in 1..100){
+            for (i in 1..100) {
                 buildType {
                     id("bt$i")
                     name = "Build configuration #$i"
@@ -61,6 +61,7 @@ project {
 
                 }
             }
-        }
+        })
+
     }
 }
