@@ -35,7 +35,7 @@ project {
             name = projectName
             buildType {
                 name = "Build Type #1 in $projectName"
-                id=RelativeId("bt1")
+                id=RelativeId("${projectName}_bt1")
                 steps {
                     for (j in 1..10) {
                         script {
@@ -48,7 +48,7 @@ project {
             }
             buildType {
                 name = "Build Type #2 in $projectName"
-                id=RelativeId("bt2")
+                id=RelativeId("${projectName}_bt2")
                 steps {
                     for (j in 1..10) {
                         script {
