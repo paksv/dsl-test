@@ -1,4 +1,5 @@
 import jetbrains.buildServer.configs.kotlin.v2018_1.*
+import jetbrains.buildServer.configs.kotlin.v2018_1.buildSteps.script
 
 /*
 The settings script is an entry point for defining a TeamCity
@@ -27,24 +28,39 @@ version = "2018.1"
 project {
     description = "Lots of DSL objects in here"
 
-    buildType(SomeConfiguration)
+    for (i in 1..8000){
+        subProject(Project({
+            id=RelativeId("SubProject$i")
+            val projectName = "SubProject #$i"
+            name = projectName
+            buildType {
+                name = "Build Type #1 in $projectName"
+                id=RelativeId("bt1")
+                steps {
+                    for (j in 1..10) {
+                        script {
+                            name = "Step # $j"
+                            scriptContent = "echo Test #$j in project $i"
+                        }
+                    }
+                }
 
-    subProject(SubProject)
-    val subProject2 = Project({
-        id=RelativeId("SubProject2")
-        name = "SubProject #2"
-    })
-    subProject(subProject2)
+            }
+            buildType {
+                name = "Build Type #2 in $projectName"
+                id=RelativeId("bt2")
+                steps {
+                    for (j in 1..10) {
+                        script {
+                            name = "Step # $j"
+                            scriptContent = "echo Test #$j in project $i"
+                        }
+                    }
+                }
+
+            }
+        }))
+
+    }
+
 }
-
-object SomeConfiguration : BuildType({
-    name = "Some Configuration"
-})
-
-
-object SubProject : Project({
-    name = "SubProject"
-
-})
-
-
