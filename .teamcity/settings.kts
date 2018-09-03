@@ -31,6 +31,10 @@ project {
     buildType(SomeConfiguration)
 
     subProject(SubProject)
+    val subProject2 = Project{
+        name = "SubProject2"
+    }
+    subProject(subProject2)
 }
 
 object SomeConfiguration : BuildType({
