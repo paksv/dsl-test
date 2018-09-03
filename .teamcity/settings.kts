@@ -28,7 +28,7 @@ version = "2018.1"
 project {
     description = "Lots of DSL objects in here"
 
-    for (i in 1..8000){
+    for (i in 1..80){
         subProject{
             val projectId ="SubProject$i"
             id=RelativeId(projectId)
@@ -60,6 +60,42 @@ project {
                 }
 
             }
+            for (k in 1..100) {
+
+                subProject {
+                    val projectId = "SubProject${i}_SubProject$k"
+                    id = RelativeId(projectId)
+                    val projectName = "SubSubProject #$k"
+                    name = projectName
+                    buildType {
+                        name = "Build Type #1 in $projectName"
+                        id = RelativeId("${projectId}_bt1")
+                        steps {
+                            for (j in 1..10) {
+                                script {
+                                    name = "Step # $j"
+                                    scriptContent = "echo Test #$j in project $i"
+                                }
+                            }
+                        }
+
+                    }
+                    buildType {
+                        name = "Build Type #2 in $projectName"
+                        id = RelativeId("${projectId}_bt2")
+                        steps {
+                            for (j in 1..10) {
+                                script {
+                                    name = "Step # $j"
+                                    scriptContent = "echo Test #$j in project $i"
+                                }
+                            }
+                        }
+
+                    }
+                }
+            }
+
         }
 
     }
