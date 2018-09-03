@@ -30,12 +30,13 @@ project {
 
     for (i in 1..8){
         subProject{
-            id=RelativeId("SubProject$i")
+            val projectId ="SubProject$i"
+            id=RelativeId(projectId)
             val projectName = "SubProject #$i"
             name = projectName
             buildType {
                 name = "Build Type #1 in $projectName"
-                id=RelativeId("${projectName}_bt1")
+                id=RelativeId("${projectId}_bt1")
                 steps {
                     for (j in 1..10) {
                         script {
@@ -48,7 +49,7 @@ project {
             }
             buildType {
                 name = "Build Type #2 in $projectName"
-                id=RelativeId("${projectName}_bt2")
+                id=RelativeId("${projectId}_bt2")
                 steps {
                     for (j in 1..10) {
                         script {
