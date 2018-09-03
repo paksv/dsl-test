@@ -1,5 +1,4 @@
 import jetbrains.buildServer.configs.kotlin.v2018_1.*
-import jetbrains.buildServer.configs.kotlin.v2018_1.buildSteps.script
 
 /*
 The settings script is an entry point for defining a TeamCity
@@ -32,36 +31,20 @@ project {
 
     subProject(SubProject)
     val subProject2 = Project({
-        name = "SubProject2"
+        id=RelativeId("SubProject2")
+        name = "SubProject #2"
     })
     subProject(subProject2)
 }
 
 object SomeConfiguration : BuildType({
     name = "Some Configuration"
-
-    steps {
-        script {
-            name = "Some step"
-            scriptContent = "echo Test #1"
-        }
-    }
 })
 
 
 object SubProject : Project({
     name = "SubProject"
 
-    subProject(SubProject_SubProject)
 })
 
 
-object SubProject_SubProject : Project({
-    name = "SubProject"
-
-    buildType(SubProject_SubProject_Confff)
-})
-
-object SubProject_SubProject_Confff : BuildType({
-    name = "Confff"
-})
