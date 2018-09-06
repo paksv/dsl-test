@@ -28,7 +28,7 @@ version = "2018.1"
 project {
     description = "Lots of DSL objects in here"
 
-    for (i in 1..80){
+    for (i in 1..8){
         subProject{
             val projectId ="SubProject$i"
             id=RelativeId(projectId)
@@ -60,7 +60,7 @@ project {
                 }
 
             }
-            for (k in 1..100) {
+            for (k in 1..10) {
 
                 subProject {
                     val projectId = "SubProject${i}_SubProject$k"
