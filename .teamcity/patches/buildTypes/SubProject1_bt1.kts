@@ -1,6 +1,7 @@
 package patches.buildTypes
 
 import jetbrains.buildServer.configs.kotlin.v2018_1.*
+import jetbrains.buildServer.configs.kotlin.v2018_1.buildSteps.ScriptBuildStep
 import jetbrains.buildServer.configs.kotlin.v2018_1.buildSteps.script
 import jetbrains.buildServer.configs.kotlin.v2018_1.ui.*
 
@@ -53,7 +54,42 @@ changeBuildType(RelativeId("SubProject1_bt1")) {
         }
     }
     steps {
-        items.removeAt(0)
-        items.removeAt(0)
+        update<ScriptBuildStep>(0) {
+            name = "Step # 3"
+            scriptContent = "echo Test #3 in project 1"
+        }
+        update<ScriptBuildStep>(1) {
+            name = "Step # 4"
+            scriptContent = "echo Test #4 in project 1"
+        }
+        update<ScriptBuildStep>(2) {
+            name = "Step # 5"
+            scriptContent = """
+                echo Test #5 in project 1
+                echo aaa
+            """.trimIndent()
+        }
+        update<ScriptBuildStep>(3) {
+            name = "Step # 6"
+            scriptContent = "echo Test #6 in project 1"
+        }
+        update<ScriptBuildStep>(4) {
+            name = "Step # 7"
+            scriptContent = "echo Test #7 in project 1"
+        }
+        update<ScriptBuildStep>(5) {
+            name = "Step # 8"
+            scriptContent = "echo Test #8 in project 1"
+        }
+        update<ScriptBuildStep>(6) {
+            name = "Step # 9"
+            scriptContent = "echo Test #9 in project 1"
+        }
+        update<ScriptBuildStep>(7) {
+            name = "Step # 10"
+            scriptContent = "echo Test #10 in project 1"
+        }
+        items.removeAt(8)
+        items.removeAt(8)
     }
 }
