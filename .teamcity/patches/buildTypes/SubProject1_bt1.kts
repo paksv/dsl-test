@@ -54,5 +54,6 @@ changeBuildType(RelativeId("SubProject1_bt1")) {
     }
     steps {
         items.removeAt(0)
+        items.removeAt(0)
     }
 }
