@@ -56,7 +56,10 @@ changeBuildType(RelativeId("SubProject1_bt1")) {
     steps {
         update<ScriptBuildStep>(0) {
             name = "Step # 3"
-            scriptContent = "echo Test #3 in project 1"
+            scriptContent = """
+                echo Test #3 in project 1
+                echo asdadsa
+            """.trimIndent()
         }
         update<ScriptBuildStep>(1) {
             name = "Step # 4"
