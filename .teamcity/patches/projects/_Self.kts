@@ -13,5 +13,5 @@ changeProject(DslContext.projectId) {
     check(description == "Lots of DSL objects in here") {
         "Unexpected description: '$description'"
     }
-    description = "Lots of DSL objects in here №1"
+    description = "Lots of DSL objects in here №2"
 }
