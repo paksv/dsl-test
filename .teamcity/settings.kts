@@ -28,11 +28,12 @@ version = "2018.1"
 project {
     description = "Lots of DSL objects in here"
 
-    for (i in 1..7){
+    val chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    for (i in 1..5){
         subProject{
-            val projectId ="SubProject$i"
+            val projectId ="${chars[i]}SubProject$i"
             id=RelativeId(projectId)
-            val projectName = "SubProject #$i"
+            val projectName = "${chars[i]}SubProject #$i"
             name = projectName
             buildType {
                 name = "Build Type #1 in $projectName"
@@ -51,7 +52,7 @@ project {
                 name = "Build Type #2 in $projectName"
                 id=RelativeId("${projectId}_bt2")
                 steps {
-                    for (j in 1..10) {
+                    for (j in 1..3) {
                         script {
                             name = "Step # $j"
                             scriptContent = "echo Test #$j in project $i"
@@ -60,12 +61,12 @@ project {
                 }
 
             }
-            for (k in 1..10) {
+            for (k in 1..5) {
 
                 subProject {
-                    val projectId = "SubProject${i}_SubProject$k"
+                    val projectId = "${chars[i]}SubProject${i}_${chars[k]}SubProject$k"
                     id = RelativeId(projectId)
-                    val projectName = "SubSubProject #$k"
+                    val projectName = "${chars[k]}SubSubProject #$k"
                     name = projectName
                     buildType {
                         name = "Build Type #1 in $projectName"
@@ -84,7 +85,7 @@ project {
                         name = "Build Type #2 in $projectName"
                         id = RelativeId("${projectId}_bt2")
                         steps {
-                            for (j in 1..10) {
+                            for (j in 1..2) {
                                 script {
                                     name = "Step # $j"
                                     scriptContent = "echo Test #$j in project $i"
