@@ -81,19 +81,6 @@ project {
                         }
 
                     }
-                    buildType {
-                        name = "Build Type #2 in $projectName"
-                        id = RelativeId("${projectId}_bt2")
-                        steps {
-                            for (j in 1..2) {
-                                script {
-                                    name = "Step # $j"
-                                    scriptContent = "echo Test #$j in project $i"
-                                }
-                            }
-                        }
-
-                    }
                 }
             }
 
