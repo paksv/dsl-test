@@ -29,7 +29,7 @@ project {
     description = "Lots of DSL objects in here"
 
     val chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-    for (i in 1..2){
+    for (i in 1..1){
         subProject{
             val projectId ="${chars[i]}SubProject$i"
             id=RelativeId(projectId)
