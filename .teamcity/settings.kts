@@ -61,7 +61,7 @@ project {
                 }
 
             }
-            for (k in 1..5) {
+            for (k in 1..2) {
 
                 subProject {
                     val projectId = "${chars[i]}SubProject${i}_${chars[k]}SubProject$k"
@@ -72,7 +72,20 @@ project {
                         name = "Build Type #1 in $projectName"
                         id = RelativeId("${projectId}_bt1")
                         steps {
-                            for (j in 1..10) {
+                            for (j in 1..2) {
+                                script {
+                                    name = "Step # $j"
+                                    scriptContent = "echo Test #$j in project $i"
+                                }
+                            }
+                        }
+
+                    }
+                    buildType {
+                        name = "Build Type #2 in $projectName"
+                        id = RelativeId("${projectId}_bt2")
+                        steps {
+                            for (j in 1..2) {
                                 script {
                                     name = "Step # $j"
                                     scriptContent = "echo Test #$j in project $i"
