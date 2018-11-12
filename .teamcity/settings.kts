@@ -1,5 +1,6 @@
 import jetbrains.buildServer.configs.kotlin.v2018_1.*
 import jetbrains.buildServer.configs.kotlin.v2018_1.buildSteps.script
+import jetbrains.buildServer.configs.kotlin.v2018_1.triggers.vcs
 
 /*
 The settings script is an entry point for defining a TeamCity
@@ -26,73 +27,65 @@ To debug in IntelliJ Idea, open the 'Maven Projects' tool window (View
 version = "2018.1"
 
 project {
+    description = "Lots of DSL objects in here"
 
-    buildType(bt2)
-    buildType(bt1)
+    subProject(OldDsl)
 }
 
-object bt1 : BuildType({
-    name = "Build Type #1 in BSubProject #1"
 
-    steps {
-        script {
-            name = "Step # 1"
-            scriptContent = "echo Test #1 in project 1"
-        }
-        script {
-            name = "Step # 2"
-            scriptContent = "echo Test #2 in project 1"
-        }
-        script {
-            name = "Step # 3"
-            scriptContent = "echo Test #3 in project 1"
-        }
-        script {
-            name = "Step # 4"
-            scriptContent = "echo Test #4 in project 1"
-        }
-        script {
-            name = "Step # 5"
-            scriptContent = "echo Test #5 in project 1"
-        }
-        script {
-            name = "Step # 6"
-            scriptContent = "echo Test #6 in project 1"
-        }
-        script {
-            name = "Step # 7"
-            scriptContent = "echo Test #7 in project 1"
-        }
-        script {
-            name = "Step # 8"
-            scriptContent = "echo Test #8 in project 1"
-        }
-        script {
-            name = "Step # 9"
-            scriptContent = "echo Test #9 in project 1"
-        }
-        script {
-            name = "Step # 10"
-            scriptContent = "echo Test #10 in project 1"
+object OldDsl : Project({
+    name = "Old DSL"
+    description = "a1"
+
+    buildType(OldDsl_OldConfig3)
+    buildType(OldDsl_OldConfig2)
+    buildType(OldDsl_OldConfig1)
+    buildTypesOrder = arrayListOf(OldDsl_OldConfig2, OldDsl_OldConfig1, OldDsl_OldConfig3)
+})
+
+object OldDsl_OldConfig1 : BuildType({
+    name = "Old Config 1"
+
+    vcs {
+        root(AbsoluteId("LocalTestJavaRepo"))
+    }
+
+    triggers {
+        vcs {
         }
     }
 })
 
-object bt2 : BuildType({
-    name = "Build Type #2 in BSubProject #1"
+object OldDsl_OldConfig2 : BuildType({
+    name = "Old Config 2"
+    description = "descriptuion1"
+
+    vcs {
+        root(AbsoluteId("LocalTestJavaRepo"))
+    }
 
     steps {
         script {
-            name = "Step # 1"
-            scriptContent = "echo Test #1 in project 1"
+            scriptContent = "echo aaa5"
         }
-        script {
-            name = "Step # 2"
-            scriptContent = "echo Test #2 in project 1"
+    }
+
+    triggers {
+        vcs {
+            branchFilter = ""
         }
-        script {
-            name = "Step # 3"
-            scriptContent = "echo Test #3 in project 1"
+    }
+})
+
+object OldDsl_OldConfig3 : BuildType({
+    name = "Old Config 3"
+
+    vcs {
+        root(AbsoluteId("LocalTestJavaRepo"))
+    }
+
+    triggers {
+        vcs {
         }
     }
 })
