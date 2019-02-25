@@ -1,6 +1,5 @@
 import jetbrains.buildServer.configs.kotlin.v2018_1.*
 import jetbrains.buildServer.configs.kotlin.v2018_1.buildSteps.script
-import jetbrains.buildServer.configs.kotlin.v2018_1.triggers.vcs
 
 /*
 The settings script is an entry point for defining a TeamCity
@@ -24,7 +23,7 @@ To debug in IntelliJ Idea, open the 'Maven Projects' tool window (View
 'Debug' option is available in the context menu for the task.
 */
 
-version = "2018.2"
+version = "2018.1"
 
 project {
     description = "Lots of DSL objects in here"
@@ -33,8 +32,6 @@ project {
     for (i in 1..20){
         val bt = MyBuildType("BT $i", prevBuildType)
         buildType(bt)
-        println("""Create BT with ID: ${bt.id}""")
-
         prevBuildType = bt
     }
 }
@@ -42,6 +39,7 @@ project {
 
 class MyBuildType(private val myName:String, private val prevType: MyBuildType?): BuildType({
     name = myName
+    id = RelativeId(myName.toId())
     steps{
         script {
             scriptContent="sleep 5\necho Hello $myName"
