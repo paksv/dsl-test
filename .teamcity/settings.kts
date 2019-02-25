@@ -29,63 +29,26 @@ version = "2018.1"
 project {
     description = "Lots of DSL objects in here"
 
-    subProject(OldDsl)
+    var prevBuildType:MyBuildType? = null
+    for (i in 1..20){
+        val bt = MyBuildType("BT $i", prevBuildType)
+        buildType(bt)
+        prevBuildType = bt
+    }
 }
 
 
-object OldDsl : Project({
-    name = "Old DSL"
-    description = "a1"
-
-    buildType(OldDsl_OldConfig3)
-    buildType(OldDsl_OldConfig2)
-    buildType(OldDsl_OldConfig1)
-    buildTypesOrder = arrayListOf(OldDsl_OldConfig2, OldDsl_OldConfig1, OldDsl_OldConfig3)
-})
-
-object OldDsl_OldConfig1 : BuildType({
-    name = "Old Config 1"
-
-    vcs {
-        root(AbsoluteId("LocalTestJavaRepo"))
-    }
-
-    triggers {
-        vcs {
-        }
-    }
-})
-
-object OldDsl_OldConfig2 : BuildType({
-    name = "Old Config 2"
-    description = "descriptuion1"
-
-    vcs {
-        root(AbsoluteId("LocalTestJavaRepo"))
-    }
-
-    steps {
+class MyBuildType(val myName:String, val prevType: MyBuildType?): BuildType({
+    name = myName
+    steps{
         script {
-            scriptContent = "echo aaa5"
+            scriptContent="sleep 5\necho Hello $myName"
         }
     }
-
-    triggers {
-        vcs {
-            branchFilter = ""
-        }
-    }
-})
-
-object OldDsl_OldConfig3 : BuildType({
-    name = "Old Config 3"
-
-    vcs {
-        root(AbsoluteId("LocalTestJavaRepo"))
-    }
-
-    triggers {
-        vcs {
+    if (prevType != null){
+        dependencies {
+            snapshot(prevType){
+            }
         }
     }
 })
