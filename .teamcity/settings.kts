@@ -63,6 +63,6 @@ class MyBuildType(private val myName:String): BuildType({
 */
     }
     requirements{
-        contains("system.cloud.profile_id", "kube")
+//        contains("system.cloud.profile_id", "kube")
     }
 })
