@@ -29,7 +29,7 @@ project {
     description = "Lots of DSL objects in here"
 
     val prevBuilds  = arrayListOf<MyBuildType>()
-    for (i in 1..20){
+    for (i in 1..700){
         val bt = MyBuildType("BT $i")
         buildType(bt)
         prevBuilds.add(bt)
