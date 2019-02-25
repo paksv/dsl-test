@@ -24,7 +24,7 @@ To debug in IntelliJ Idea, open the 'Maven Projects' tool window (View
 'Debug' option is available in the context menu for the task.
 */
 
-version = "2018.1"
+version = "2018.2"
 
 project {
     description = "Lots of DSL objects in here"
@@ -33,12 +33,14 @@ project {
     for (i in 1..20){
         val bt = MyBuildType("BT $i", prevBuildType)
         buildType(bt)
+        println("""Create BT with ID: ${bt.id}""")
+
         prevBuildType = bt
     }
 }
 
 
-class MyBuildType(val myName:String, val prevType: MyBuildType?): BuildType({
+class MyBuildType(private val myName:String, private val prevType: MyBuildType?): BuildType({
     name = myName
     steps{
         script {
