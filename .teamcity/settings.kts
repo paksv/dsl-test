@@ -44,7 +44,9 @@ class AllBuilds(val prevBuilds: List<MyBuildType>) : BuildType({
     type = Type.COMPOSITE
     dependencies {
         prevBuilds.forEach {
-            snapshot(it){}
+            snapshot(it){
+                reuseBuilds = ReuseBuilds.NO
+            }
         }
     }
 })
