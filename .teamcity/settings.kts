@@ -51,4 +51,7 @@ class MyBuildType(private val myName:String, private val prevType: MyBuildType?)
             }
         }
     }
+    requirements{
+        contains("system.cloud.profile_id", "kube")
+    }
 })
