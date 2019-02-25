@@ -28,27 +28,34 @@ version = "2018.2"
 project {
     description = "Lots of DSL objects in here"
 
-    var prevBuildType:MyBuildType? = null
+    val prevBuilds  = arrayListOf<MyBuildType>()
     for (i in 1..20){
-        val bt = MyBuildType("BT $i", prevBuildType)
+        val bt = MyBuildType("BT $i")
         buildType(bt)
-        prevBuildType = bt
+        prevBuilds.add(bt)
     }
+    buildType(AllBuilds(prevBuilds))
+
+
 }
 
+class AllBuilds(val prevBuilds: List<MyBuildType>) : BuildType({
+    name = "AllBuilds"
+    type = Type.COMPOSITE
+    dependencies {
+        prevBuilds.forEach {
+            snapshot(it){}
+        }
+    }
+})
 
-class MyBuildType(private val myName:String, private val prevType: MyBuildType?): BuildType({
+
+class MyBuildType(private val myName:String): BuildType({
     name = myName
     id = RelativeId(myName.toId())
     steps{
         script {
             scriptContent="sleep 5\necho Hello $myName"
-        }
-    }
-    if (prevType != null){
-        dependencies {
-            snapshot(prevType){
-            }
         }
     }
     requirements{
