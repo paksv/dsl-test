@@ -56,13 +56,11 @@ class MyBuildType(private val myName:String): BuildType({
     name = myName
     id = RelativeId(myName.toId())
     steps{
-/*
         script {
             scriptContent="sleep 5\necho Hello $myName"
         }
-*/
     }
     requirements{
-//        contains("system.cloud.profile_id", "kube")
+        contains("system.cloud.profile_id", "kube")
     }
 })
