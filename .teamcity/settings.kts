@@ -1,5 +1,5 @@
-import jetbrains.buildServer.configs.kotlin.v2018_1.*
-import jetbrains.buildServer.configs.kotlin.v2018_1.buildSteps.script
+import jetbrains.buildServer.configs.kotlin.v2018_2.*
+import jetbrains.buildServer.configs.kotlin.v2018_2.buildSteps.script
 
 /*
 The settings script is an entry point for defining a TeamCity
@@ -28,40 +28,124 @@ version = "2018.2"
 project {
     description = "Lots of DSL objects in here"
 
-    val prevBuilds  = arrayListOf<MyBuildType>()
-    for (i in 1..5){
-        val bt = MyBuildType("BT $i")
-        buildType(bt)
-        prevBuilds.add(bt)
-    }
-    buildType(AllBuilds(prevBuilds))
-
-
+    buildType(AllBuilds)
+    buildType(Bt3)
+    buildType(Bt2)
+    buildType(Bt1)
+    buildType(Bt5)
+    buildType(Bt4)
 }
 
-class AllBuilds(val prevBuilds: List<MyBuildType>) : BuildType({
+object AllBuilds : BuildType({
     name = "AllBuilds"
-    type = Type.COMPOSITE
+
+    type = BuildTypeSettings.Type.COMPOSITE
+
     dependencies {
-        prevBuilds.forEach {
-            snapshot(it){
-                reuseBuilds = ReuseBuilds.NO
-            }
+        snapshot(Bt1) {
+            reuseBuilds = ReuseBuilds.NO
+        }
+        snapshot(Bt2) {
+            reuseBuilds = ReuseBuilds.NO
+        }
+        snapshot(Bt3) {
+            reuseBuilds = ReuseBuilds.NO
+        }
+        snapshot(Bt4) {
+            reuseBuilds = ReuseBuilds.NO
+        }
+        snapshot(Bt5) {
+            reuseBuilds = ReuseBuilds.NO
         }
     }
 })
 
-
-class MyBuildType(private val myName:String): BuildType({
-    name = myName
-    id = RelativeId(myName.toId())
+object Bt1 : BuildType({
+    name = "BT 1"
     paused = true
-    steps{
+
+    steps {
         script {
-            scriptContent="sleep 5\necho Hello $myName"
+            scriptContent = """
+                sleep 5
+                echo Hello BT 1
+            """.trimIndent()
         }
     }
-    requirements{
+
+    requirements {
+        contains("system.cloud.profile_id", "kube")
+    }
+})
+
+object Bt2 : BuildType({
+    name = "BT 2"
+    paused = true
+
+    steps {
+        script {
+            scriptContent = """
+                sleep 5
+                echo Hello BT 2
+            """.trimIndent()
+        }
+    }
+
+    requirements {
+        contains("system.cloud.profile_id", "kube")
+    }
+})
+
+object Bt3 : BuildType({
+    name = "BT 3"
+    paused = true
+
+    steps {
+        script {
+            scriptContent = """
+                sleep 5
+                echo Hello BT 3
+            """.trimIndent()
+        }
+    }
+
+    requirements {
+        contains("system.cloud.profile_id", "kube")
+    }
+})
+
+object Bt4 : BuildType({
+    name = "BT 4"
+    paused = true
+
+    steps {
+        script {
+            scriptContent = """
+                sleep 5
+                echo Hello BT 4
+            """.trimIndent()
+        }
+    }
+
+    requirements {
+        contains("system.cloud.profile_id", "kube")
+    }
+})
+
+object Bt5 : BuildType({
+    name = "BT 5"
+    paused = true
+
+    steps {
+        script {
+            scriptContent = """
+                sleep 5
+                echo Hello BT 5
+            """.trimIndent()
+        }
+    }
+
+    requirements {
         contains("system.cloud.profile_id", "kube")
     }
 })
