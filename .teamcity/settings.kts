@@ -55,6 +55,7 @@ class AllBuilds(val prevBuilds: List<MyBuildType>) : BuildType({
 class MyBuildType(private val myName:String): BuildType({
     name = myName
     id = RelativeId(myName.toId())
+    paused = true
     steps{
         script {
             scriptContent="sleep 5\necho Hello $myName"
