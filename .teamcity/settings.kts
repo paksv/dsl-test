@@ -98,7 +98,7 @@ object Bt2 : BuildType({
 
 object Bt3 : BuildType({
     name = "BT 3"
-    paused = true
+    paused = false
 
     steps {
         script {
@@ -134,7 +134,7 @@ object Bt4 : BuildType({
 
 object Bt5 : BuildType({
     name = "BT 5"
-    paused = true
+    paused = false
 
     steps {
         script {
