@@ -31,7 +31,7 @@ val deps = ArrayList<BuildType>()
 project {
     description = "Lots of DSL objects in here"
 
-    for (i in 0..20){
+    for (i in 0..80){
         val bt = BuildType {
             id ( "BT_$i")
             name = "BT $i"
