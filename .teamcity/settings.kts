@@ -36,7 +36,7 @@ project {
         name = "Spak Fast"
         steps {
             script {
-                scriptContent="sleep %sleep.time% && echo hello"
+                scriptContent="timeout %sleep.time% \n echo hello"
             }
         }
     }
