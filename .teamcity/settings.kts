@@ -54,6 +54,7 @@ project {
             param("secure:access-id", "credentialsJSON:c14340bf-706c-4e1a-8ea7-49abde9cdb08")
             param("total-work-time", "")
             param("description", "")
+            param("profileServerUrl", "http://ec2-34-251-126-180.eu-west-1.compute.amazonaws.com:8112")
             param("cloud-code", "amazon")
             param("enabled", "true")
             param("max-running-instances", "3")
