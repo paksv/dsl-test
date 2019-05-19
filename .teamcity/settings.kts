@@ -39,6 +39,9 @@ project {
                 scriptContent="timeout %sleep.time% \n echo hello"
             }
         }
+        params {
+            text("sleep.time", "", display = ParameterDisplay.PROMPT, allowEmpty = true)
+        }
     }
 
 
