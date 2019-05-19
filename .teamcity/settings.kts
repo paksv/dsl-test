@@ -72,7 +72,7 @@ project {
             param("description", "")
             param("profileServerUrl", "http://ec2-34-251-126-180.eu-west-1.compute.amazonaws.com:8112")
             param("cloud-code", "amazon")
-            param("enabled", "false")
+            param("enabled", "true")
             param("max-running-instances", "3")
             param("agentPushPreset", "")
             param("profileId", "amazon-30")
