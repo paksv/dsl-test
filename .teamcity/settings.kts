@@ -31,6 +31,17 @@ val deps = ArrayList<BuildType>()
 project {
     description = "Lots of DSL objects in here"
 
+    buildType {
+        id("Spak_fast")
+        name = "Spak Fast"
+        steps {
+            script {
+                scriptContent="sleep 5 && echo hello"
+            }
+        }
+    }
+
+
     features {
         feature {
             id = "PROJECT_EXT_28"
@@ -41,6 +52,7 @@ project {
             param("user-tags", "extra=tag")
             param("agent_pool_id", "-2")
             param("image-instances-limit", "2")
+//            param("image-name-prefix", "spak-prefix")
             param("subnet-id", "subnet-17f8f17c")
             param("ebs-optimized", "false")
             param("instance-type", "c5d.large")
