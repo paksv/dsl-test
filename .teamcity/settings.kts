@@ -36,7 +36,7 @@ project {
         name = "Spak Fast"
         steps {
             script {
-                scriptContent="timeout %sleep.time% \n echo hello"
+                scriptContent="timeout %sleep.time%"
             }
         }
         params {
@@ -59,6 +59,7 @@ project {
             param("subnet-id", "subnet-17f8f17c")
             param("ebs-optimized", "false")
             param("instance-type", "c5d.large")
+//            param("terminate-after-build", "true")
             param("amazon-id", "ami-0583c0af8cebe48fe")
             param("source-id", "ami-0583c0af8cebe48fe")
         }
