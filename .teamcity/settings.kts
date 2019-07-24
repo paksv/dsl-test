@@ -1,6 +1,7 @@
 import jetbrains.buildServer.configs.kotlin.v2018_2.*
 import jetbrains.buildServer.configs.kotlin.v2018_2.buildSteps.script
 import jetbrains.buildServer.configs.kotlin.v2018_2.ui.findProjectFeature
+import jetbrains.buildServer.configs.kotlin.v2018_2.vcs.GitVcsRoot
 
 /*
 The settings script is an entry point for defining a TeamCity
@@ -30,6 +31,16 @@ val deps = ArrayList<BuildType>()
 
 project {
     description = "Lots of DSL objects in here"
+
+    vcsRoot(GitVcsRoot({
+        id("AnotherRoot")
+        name = "Another Root"
+        url = "/Users/sergeypak/projects/Other/teamcity-dsl-settings/"
+        authMethod = password {
+            userName = "user"
+            password = "%env.TOKEN%"
+        }
+    }))
 
     buildType {
         id("Spak_fast")
