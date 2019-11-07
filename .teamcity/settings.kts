@@ -70,7 +70,11 @@ project {
     subProject{
         id("SubProject")
         name = "subProject"
-
+        buildType{
+            id("SubProject_BTT")
+            name = "BTT"
+            buildNumberPattern = "credentialsJSON:9bafce27-e021-483c-b230-5c3990420188"
+        }
     }
 
 
