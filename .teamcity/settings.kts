@@ -56,6 +56,7 @@ project {
     }
 
     buildType {
+        id("Nexxxt")
         name = "Nexxt"
         steps{
             script{
@@ -66,7 +67,7 @@ project {
         }
     }
 
-    project{
+    subProject{
         id("SubProject")
         name = "subProject"
 
