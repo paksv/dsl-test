@@ -67,6 +67,12 @@ project {
         }
     }
 
+    project{
+        id("SubProject")
+        name = "subProject"
+
+    }
+
 
     features {
         feature {
