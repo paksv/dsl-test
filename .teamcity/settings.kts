@@ -55,6 +55,18 @@ project {
         }
     }
 
+    buildType {
+        id("Next one")
+        name = "Nexxt"
+        steps{
+            script{
+                scriptContent = "echo Hello world"
+                dockerImage = "busybox"
+            }
+
+        }
+    }
+
 
     features {
         feature {
