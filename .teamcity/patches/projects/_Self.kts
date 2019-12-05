@@ -2,6 +2,7 @@ package patches.projects
 
 import jetbrains.buildServer.configs.kotlin.v2018_2.*
 import jetbrains.buildServer.configs.kotlin.v2018_2.Project
+import jetbrains.buildServer.configs.kotlin.v2018_2.ProjectFeature
 import jetbrains.buildServer.configs.kotlin.v2018_2.ui.*
 
 /*
@@ -11,6 +12,30 @@ accordingly, and delete the patch script.
 */
 changeProject(DslContext.projectId) {
     features {
+        val feature1 = find<ProjectFeature> {
+            feature {
+                type = "CloudProfile"
+                id = "amazon-30"
+                param("agentPushPreset", "")
+                param("cloud-code", "amazon")
+                param("description", "")
+                param("enabled", "true")
+                param("max-running-instances", "3")
+                param("name", "Dublin - ein")
+                param("next-hour", "")
+                param("not-checked", "")
+                param("profileId", "amazon-30")
+                param("profileServerUrl", "http://ec2-34-251-126-180.eu-west-1.compute.amazonaws.com:8112")
+                param("region", "eu-west-1")
+                param("secure:access-id", "credentialsJSON:c14340bf-706c-4e1a-8ea7-49abde9cdb08")
+                param("secure:secret-key", "credentialsJSON:5397cc0f-9bc1-4a06-9729-1135042241b9")
+                param("terminate-idle-time", "30")
+                param("total-work-time", "")
+            }
+        }
+        feature1.apply {
+            param("enabled", "false")
+        }
         add {
             feature {
                 type = "OAuthProvider"
