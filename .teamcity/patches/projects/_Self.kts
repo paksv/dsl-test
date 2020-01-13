@@ -24,5 +24,18 @@ changeProject(DslContext.projectId) {
                 param("providerType", "AmazonDocker")
             }
         }
+        add {
+            feature {
+                type = "OAuthProvider"
+                id = "PROJECT_EXT_40"
+                param("secure:aws.secret.access.key", "credentialsJSON:c5274aa0-fced-42b6-b5c5-8c9721ce250a")
+                param("displayName", "ECR New")
+                param("aws.access.key.id", "21321")
+                param("aws.credentials.type", "aws.access.keys")
+                param("aws.region.name", "us-east-1")
+                param("registryId", "12321321")
+                param("providerType", "AmazonDocker")
+            }
+        }
     }
 }
