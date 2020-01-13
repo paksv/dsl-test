@@ -20,7 +20,7 @@ changeProject(DslContext.projectId) {
                 param("aws.access.key.id", "aaasdas")
                 param("aws.credentials.type", "aws.access.keys")
                 param("aws.region.name", "eu-west-1")
-                param("registryId", "123412315")
+                param("registryId", "123412314")
                 param("providerType", "AmazonDocker")
             }
         }
