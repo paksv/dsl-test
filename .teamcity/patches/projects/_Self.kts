@@ -2,6 +2,8 @@ package patches.projects
 
 import jetbrains.buildServer.configs.kotlin.v2018_2.*
 import jetbrains.buildServer.configs.kotlin.v2018_2.Project
+import jetbrains.buildServer.configs.kotlin.v2018_2.ProjectFeature
+import jetbrains.buildServer.configs.kotlin.v2018_2.projectFeatures.dockerECRRegistry
 import jetbrains.buildServer.configs.kotlin.v2018_2.ui.*
 
 /*
@@ -11,17 +13,41 @@ accordingly, and delete the patch script.
 */
 changeProject(DslContext.projectId) {
     features {
-        add {
+        val feature1 = find<ProjectFeature> {
             feature {
-                type = "OAuthProvider"
+                type = "CloudProfile"
+                id = "amazon-30"
+                param("agentPushPreset", "")
+                param("cloud-code", "amazon")
+                param("description", "")
+                param("enabled", "true")
+                param("max-running-instances", "3")
+                param("name", "Dublin - ein")
+                param("next-hour", "")
+                param("not-checked", "")
+                param("profileId", "amazon-30")
+                param("profileServerUrl", "http://ec2-34-251-126-180.eu-west-1.compute.amazonaws.com:8112")
+                param("region", "eu-west-1")
+                param("secure:access-id", "credentialsJSON:c14340bf-706c-4e1a-8ea7-49abde9cdb08")
+                param("secure:secret-key", "credentialsJSON:5397cc0f-9bc1-4a06-9729-1135042241b9")
+                param("terminate-idle-time", "30")
+                param("total-work-time", "")
+            }
+        }
+        feature1.apply {
+            param("enabled", "false")
+        }
+        add {
+            dockerECRRegistry {
                 id = "PROJECT_EXT_33"
-                param("secure:aws.secret.access.key", "credentialsJSON:e047fca7-67ec-4df8-8485-ccebd33722f8")
-                param("displayName", "Amazon ECR Connection")
-                param("aws.access.key.id", "aaasdas")
-                param("aws.credentials.type", "aws.access.keys")
-                param("aws.region.name", "eu-west-1")
-                param("registryId", "123412314")
-                param("providerType", "AmazonDocker")
+                displayName = "Amazon ECR Connection"
+                registryId = "123412314"
+                credentialsProvider = accessKey {
+                    accessKeyId = "aaasdas"
+                    secretAccessKey = "credentialsJSON:e047fca7-67ec-4df8-8485-ccebd33722f8"
+                }
+                regionCode = "eu-west-1"
+                credentialsType = accessKeys()
             }
         }
     }
