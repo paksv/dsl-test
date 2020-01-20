@@ -12,5 +12,9 @@ in the root project, and delete the patch script.
 create(DslContext.projectId, Template({
     id("TemplateWithPasswort")
     name = "Template With Passwort"
+
+    params {
+        password("pwwd", "credentialsJSON:76bf027d-7b81-459d-8acd-81a5b4d432d0", label = "Pwd Label")
+    }
 }))
 
