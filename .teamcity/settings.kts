@@ -61,7 +61,7 @@ project {
         steps{
             script{
                 scriptContent = "echo Hello world"
-                dockerImage = "busybox"
+
             }
 
         }
