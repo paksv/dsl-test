@@ -57,7 +57,7 @@ project {
 
     buildType {
         id("Nexxxt")
-        name = "Nexxt"
+        name = "Nexxxxt"
         steps{
             script{
                 scriptContent = "echo Hello world"
@@ -68,8 +68,8 @@ project {
     }
 
     subProject{
-        id("SubProject")
-        name = "subProject"
+        id("SubProject22")
+        name = "subProject 22"
         buildType{
             id("SubProject_BTT")
             name = "BTT"
