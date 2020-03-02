@@ -44,7 +44,7 @@ project {
 
     buildType {
         id("Spak_fast")
-        name = "Spak Fast"
+        name = "Spak Fast 2"
         steps {
             script {
                 scriptContent="timeout %sleep.time%"
