@@ -2,7 +2,6 @@ package patches.projects
 
 import jetbrains.buildServer.configs.kotlin.v2019_2.*
 import jetbrains.buildServer.configs.kotlin.v2019_2.Project
-import jetbrains.buildServer.configs.kotlin.v2019_2.ProjectFeature
 import jetbrains.buildServer.configs.kotlin.v2019_2.ui.*
 
 /*
@@ -12,7 +11,25 @@ accordingly, and delete the patch script.
 */
 changeProject(DslContext.projectId) {
     features {
-        val feature1 = find<ProjectFeature> {
+        remove {
+            feature {
+                type = "CloudImage"
+                id = "PROJECT_EXT_28"
+                param("agent_pool_id", "-2")
+                param("amazon-id", "ami-0583c0af8cebe48fe")
+                param("ebs-optimized", "false")
+                param("image-instances-limit", "2")
+                param("image-name-prefix", "spak-prefix")
+                param("instance-type", "c5d.large")
+                param("profileId", "amazon-30")
+                param("security-group-ids", "sg-904db8ff,")
+                param("source-id", "ami-0583c0af8cebe48fe")
+                param("subnet-id", "subnet-17f8f17c")
+                param("use-spot-instances", "true")
+                param("user-tags", "extra=tag")
+            }
+        }
+        remove {
             feature {
                 type = "CloudProfile"
                 id = "amazon-30"
@@ -32,9 +49,6 @@ changeProject(DslContext.projectId) {
                 param("terminate-idle-time", "30")
                 param("total-work-time", "")
             }
-        }
-        feature1.apply {
-            param("enabled", "false")
         }
     }
 }
