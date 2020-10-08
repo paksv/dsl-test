@@ -1,6 +1,5 @@
 import jetbrains.buildServer.configs.kotlin.v2019_2.*
 import jetbrains.buildServer.configs.kotlin.v2019_2.buildSteps.script
-import jetbrains.buildServer.configs.kotlin.v2019_2.ui.findProjectFeature
 import jetbrains.buildServer.configs.kotlin.v2019_2.vcs.GitVcsRoot
 
 /*
@@ -25,97 +24,134 @@ To debug in IntelliJ Idea, open the 'Maven Projects' tool window (View
 'Debug' option is available in the context menu for the task.
 */
 
-version = "2019.2"
-
-val deps = ArrayList<BuildType>()
+version = "2020.1"
 
 project {
     description = "Lots of DSL objects in here"
+    defaultTemplate = RelativeId("Ttt")
 
-    vcsRoot(GitVcsRoot({
-        id("AnotherRoot")
-        name = "Another Root"
-        url = "/Users/sergeypak/projects/Other/teamcity-dsl-settings/"
-        authMethod = password {
-            userName = "user"
-            password = "%env.TOKEN%"
-        }
-    }))
+    vcsRoot(AnotherRoot)
 
-    buildType {
-        id("Spak_fast")
-        name = "Spak Fast 2"
-        steps {
-            script {
-                scriptContent="timeout %sleep.time%"
-            }
-        }
-        params {
-            text("sleep.time", "", display = ParameterDisplay.PROMPT, allowEmpty = true)
-        }
-    }
+    buildType(Bbbb)
+    buildType(A5)
+    buildType(Nexxxt)
+    buildType(A4)
+    buildType(A3)
+    buildType(A2)
+    buildType(A9)
+    buildType(A8)
+    buildType(A7)
+    buildType(Spak_fast)
+    buildType(A6)
+    buildType(A1)
+    buildType(A10)
 
-    buildType {
-        id("Nexxxt")
-        name = "Nexxxxt"
-        steps{
-            script{
-                scriptContent = "echo Hello world"
+    template(Ttt)
 
-            }
-
-        }
-    }
-
-    subProject{
-        id("SubProject22")
-        name = "subProject 22"
-        buildType{
-            id("SubProject_BTT")
-            name = "BTT"
-            buildNumberPattern = "credentialsJSON:9bafce27-e021-483c-b230-5c3990420188"
-        }
-    }
-
-
-    features {
-        feature {
-            id = "PROJECT_EXT_28"
-            type = "CloudImage"
-            param("use-spot-instances", "true")
-            param("security-group-ids", "sg-904db8ff,")
-            param("profileId", "amazon-30")
-            param("user-tags", "extra=tag")
-            param("agent_pool_id", "-2")
-            param("image-instances-limit", "2")
-            param("image-name-prefix", "spak-prefix")
-            param("subnet-id", "subnet-17f8f17c")
-            param("ebs-optimized", "false")
-            param("instance-type", "c5d.large")
-//            param("terminate-after-build", "true")
-            param("amazon-id", "ami-0583c0af8cebe48fe")
-            param("source-id", "ami-0583c0af8cebe48fe")
-        }
-        feature {
-            id = "amazon-30"
-            type = "CloudProfile"
-            param("profileServerUrl", "")
-            param("secure:access-id", "credentialsJSON:c14340bf-706c-4e1a-8ea7-49abde9cdb08")
-            param("total-work-time", "")
-            param("description", "")
-            param("profileServerUrl", "http://ec2-34-251-126-180.eu-west-1.compute.amazonaws.com:8112")
-            param("cloud-code", "amazon")
-            param("enabled", "true")
-            param("max-running-instances", "3")
-            param("agentPushPreset", "")
-            param("profileId", "amazon-30")
-            param("name", "Dublin - ein")
-            param("next-hour", "")
-            param("secure:secret-key", "credentialsJSON:5397cc0f-9bc1-4a06-9729-1135042241b9")
-            param("region", "eu-west-1")
-            param("terminate-idle-time", "30")
-            param("not-checked", "")
-        }
-    }
-
+    subProject(SubProject22)
 }
+
+object A1 : BuildType({
+    templates(Ttt)
+    name = "A1"
+})
+
+object A10 : BuildType({
+    name = "A10"
+})
+
+object A2 : BuildType({
+    templates(Ttt)
+    name = "A2"
+})
+
+object A3 : BuildType({
+    name = "A3"
+})
+
+object A4 : BuildType({
+    name = "A4"
+})
+
+object A5 : BuildType({
+    name = "A5"
+})
+
+object A6 : BuildType({
+    name = "A6"
+})
+
+object A7 : BuildType({
+    name = "A7"
+})
+
+object A8 : BuildType({
+    name = "A8"
+})
+
+object A9 : BuildType({
+    name = "A9"
+})
+
+object Bbbb : BuildType({
+    name = "BBBB"
+})
+
+object Nexxxt : BuildType({
+    name = "Nexxxxt"
+
+    steps {
+        script {
+            id = "RUNNER_1"
+            scriptContent = "echo Hello world"
+        }
+    }
+})
+
+object Spak_fast : BuildType({
+    name = "Spak Fast 2"
+
+    params {
+        text("sleep.time", "", display = ParameterDisplay.PROMPT, allowEmpty = true)
+    }
+
+    steps {
+        script {
+            id = "RUNNER_1"
+            scriptContent = "timeout %sleep.time%"
+        }
+    }
+})
+
+object Ttt : Template({
+    name = "TTT"
+
+    steps {
+        script {
+            id = "RUNNER_31"
+            scriptContent = "sleep 60"
+        }
+    }
+})
+
+object AnotherRoot : GitVcsRoot({
+    name = "Another Root"
+    url = "/Users/sergeypak/projects/Other/teamcity-dsl-settings/"
+    authMethod = password {
+        userName = "user"
+        password = "credentialsJSON:d8414e5e-2443-48ad-9a7e-3804b6c84cf2"
+    }
+})
+
+
+object SubProject22 : Project({
+    name = "subProject 22"
+
+    buildType(SubProject_BTT)
+})
+
+object SubProject_BTT : BuildType({
+    name = "BTT"
+
+    buildNumberPattern = "credentialsJSON:9bafce27-e021-483c-b230-5c3990420188"
+})
