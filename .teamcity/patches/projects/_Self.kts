@@ -10,6 +10,9 @@ To apply the patch, change the root project
 accordingly, and delete the patch script.
 */
 changeProject(DslContext.projectId) {
+    expectDefaultTemplate(null)
+    defaultTemplate = RelativeId("Ttt")
+
     features {
         remove {
             feature {
