@@ -95,6 +95,18 @@ object A9 : BuildType({
 
 object Bbbb : BuildType({
     name = "BBBB"
+    dependencies{
+        snapshot(A1){}
+        snapshot(A2){}
+        snapshot(A3){}
+        snapshot(A4){}
+        snapshot(A5){}
+        snapshot(A6){}
+        snapshot(A7){}
+        snapshot(A8){}
+        snapshot(A9){}
+        snapshot(A10){}
+    }
 })
 
 object Nexxxt : BuildType({
