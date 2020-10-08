@@ -96,16 +96,36 @@ object A9 : BuildType({
 object Bbbb : BuildType({
     name = "BBBB"
     dependencies{
-        snapshot(A1){}
-        snapshot(A2){}
-        snapshot(A3){}
-        snapshot(A4){}
-        snapshot(A5){}
-        snapshot(A6){}
-        snapshot(A7){}
-        snapshot(A8){}
-        snapshot(A9){}
-        snapshot(A10){}
+        snapshot(A1){
+            reuseBuilds = ReuseBuilds.NO
+        }
+        snapshot(A2){
+            reuseBuilds = ReuseBuilds.NO
+        }
+        snapshot(A3){
+            reuseBuilds = ReuseBuilds.NO
+        }
+        snapshot(A4){
+            reuseBuilds = ReuseBuilds.NO
+        }
+        snapshot(A5){
+            reuseBuilds = ReuseBuilds.NO
+        }
+        snapshot(A6){
+            reuseBuilds = ReuseBuilds.NO
+        }
+        snapshot(A7){
+            reuseBuilds = ReuseBuilds.NO
+        }
+        snapshot(A8){
+            reuseBuilds = ReuseBuilds.NO
+        }
+        snapshot(A9){
+            reuseBuilds = ReuseBuilds.NO
+        }
+        snapshot(A10){
+            reuseBuilds = ReuseBuilds.NO
+        }
     }
 })
 
