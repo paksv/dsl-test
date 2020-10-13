@@ -161,7 +161,7 @@ object Ttt : Template({
     steps {
         script {
             id = "RUNNER_31"
-            scriptContent = "sleep 60"
+            scriptContent = "sleep 360"
         }
     }
 })
