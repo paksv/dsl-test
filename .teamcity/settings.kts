@@ -32,99 +32,33 @@ project {
 
     vcsRoot(AnotherRoot)
 
-    buildType(Bbbb)
-    buildType(A5)
-    buildType(Nexxxt)
-    buildType(A4)
-    buildType(A3)
-    buildType(A2)
-    buildType(A9)
-    buildType(A8)
-    buildType(A7)
+    val btCollection = arrayListOf<BuildType>()
+    for (i in 1..20) {
+        btCollection.add(ABT("A$i"))
+    }
+    btCollection.forEach{
+        buildType(it)
+    }
+    buildType(BBB(btCollection))
     buildType(Spak_fast)
-    buildType(A6)
-    buildType(A1)
-    buildType(A10)
+    buildType(Nexxxt)
 
     template(Ttt)
 
     subProject(SubProject22)
 }
 
-object A1 : BuildType({
-    templates(Ttt)
-    name = "A1"
+class ABT(private val givenName: String) : BuildType( {
+    name = givenName
 })
 
-object A10 : BuildType({
-    name = "A10"
-})
-
-object A2 : BuildType({
-    templates(Ttt)
-    name = "A2"
-})
-
-object A3 : BuildType({
-    name = "A3"
-})
-
-object A4 : BuildType({
-    name = "A4"
-})
-
-object A5 : BuildType({
-    name = "A5"
-})
-
-object A6 : BuildType({
-    name = "A6"
-})
-
-object A7 : BuildType({
-    name = "A7"
-})
-
-object A8 : BuildType({
-    name = "A8"
-})
-
-object A9 : BuildType({
-    name = "A9"
-})
-
-object Bbbb : BuildType({
+class BBB(deps: Collection<BuildType>) : BuildType({
     name = "BBBB"
     dependencies{
-        snapshot(A1){
-            reuseBuilds = ReuseBuilds.NO
-        }
-        snapshot(A2){
-            reuseBuilds = ReuseBuilds.NO
-        }
-        snapshot(A3){
-            reuseBuilds = ReuseBuilds.NO
-        }
-        snapshot(A4){
-            reuseBuilds = ReuseBuilds.NO
-        }
-        snapshot(A5){
-            reuseBuilds = ReuseBuilds.NO
-        }
-        snapshot(A6){
-            reuseBuilds = ReuseBuilds.NO
-        }
-        snapshot(A7){
-            reuseBuilds = ReuseBuilds.NO
-        }
-        snapshot(A8){
-            reuseBuilds = ReuseBuilds.NO
-        }
-        snapshot(A9){
-            reuseBuilds = ReuseBuilds.NO
-        }
-        snapshot(A10){
-            reuseBuilds = ReuseBuilds.NO
+        deps.forEach {
+            snapshot(it) {
+                reuseBuilds = ReuseBuilds.NO
+            }
         }
     }
 })
