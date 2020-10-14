@@ -49,6 +49,7 @@ project {
 }
 
 class ABT(private val givenName: String) : BuildType( {
+    id(givenName)
     name = givenName
 })
 
