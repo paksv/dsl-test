@@ -33,7 +33,7 @@ project {
     vcsRoot(AnotherRoot)
 
     val btCollection = arrayListOf<BuildType>()
-    for (i in 1..20) {
+    for (i in 1..50) {
         btCollection.add(ABT("A$i"))
     }
     btCollection.forEach{
