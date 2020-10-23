@@ -1,6 +1,7 @@
 import jetbrains.buildServer.configs.kotlin.v2019_2.*
 import jetbrains.buildServer.configs.kotlin.v2019_2.buildSteps.script
 import jetbrains.buildServer.configs.kotlin.v2019_2.vcs.GitVcsRoot
+import java.io.File
 
 /*
 The settings script is an entry point for defining a TeamCity
@@ -39,6 +40,8 @@ project {
     btCollection.forEach{
         buildType(it)
     }
+    val f = File("aaa.txt")
+    println(org.apache.commons.io.FileUtils.sizeOf(f))
     buildType(BBB(btCollection))
     buildType(Spak_fast)
     buildType(Nexxxt)
