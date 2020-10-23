@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <project>
   <modelVersion>4.0.0</modelVersion>
-  <name>One_NewDslOne Config DSL Script</name>
-  <groupId>One_NewDslOne</groupId>
-  <artifactId>One_NewDslOne_dsl</artifactId>
+  <name>history-notes-bff Config DSL Script</name>
+  <groupId>history-notes-bff</groupId>
+  <artifactId>history-notes-bff_dsl</artifactId>
   <version>1.0-SNAPSHOT</version>
 
   <parent>
@@ -14,15 +14,16 @@
 
   <repositories>
     <repository>
-      <id>jetbrains-all</id>
-      <url>https://download.jetbrains.com/teamcity-repository</url>
+      <id>central</id>
+      <name>teamcity-kotlin</name>
+      <url>https://artifactory.xero-support.com/teamcity-kotlin</url>
       <snapshots>
         <enabled>true</enabled>
       </snapshots>
     </repository>
     <repository>
       <id>teamcity-server</id>
-      <url>http://localhost:8080/bs/app/dsl-plugins-repository</url>
+      <url>https://teamcity.xero-support.com/app/dsl-plugins-repository</url>
       <snapshots>
         <enabled>true</enabled>
       </snapshots>
@@ -31,13 +32,17 @@
 
   <pluginRepositories>
     <pluginRepository>
-      <id>JetBrains</id>
-      <url>https://download.jetbrains.com/teamcity-repository</url>
+      <id>central</id>
+      <name>teamcity-kotlin</name>
+      <url>https://artifactory.xero-support.com/teamcity-kotlin</url>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
     </pluginRepository>
   </pluginRepositories>
 
   <build>
-    <sourceDirectory>${basedir}</sourceDirectory>
+    <sourceDirectory>.</sourceDirectory>
     <plugins>
       <plugin>
         <artifactId>kotlin-maven-plugin</artifactId>
@@ -76,9 +81,9 @@
 
   <dependencies>
     <dependency>
-      <groupId>commons-io</groupId>
-      <artifactId>commons-io</artifactId>
-      <version>2.6</version>
+      <groupId>com.xero.kotlin</groupId>
+      <artifactId>the-scribblers-way</artifactId>
+      <version>1.1.3</version>
     </dependency>
     <dependency>
       <groupId>org.jetbrains.teamcity</groupId>
@@ -104,6 +109,11 @@
       <artifactId>kotlin-script-runtime</artifactId>
       <version>${kotlin.version}</version>
       <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.jetbrains.teamcity</groupId>
+      <artifactId>server-api</artifactId>
+      <version>2019.2-SNAPSHOT</version>
     </dependency>
   </dependencies>
 </project>
