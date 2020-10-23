@@ -41,9 +41,9 @@ project {
         buildType(it)
     }
     val f = File("aaa.txt")
-    f.createNewFile()
+//    f.createNewFile()
     println(f.absolutePath)
-    println(org.apache.commons.io.FileUtils.sizeOf(f))
+    println(org.apache.commons.io.FileUtils.toURLs(arrayOf(f)))
     buildType(BBB(btCollection))
     buildType(Spak_fast)
     buildType(Nexxxt)
