@@ -35,7 +35,7 @@ project {
 
     val btCollection = arrayListOf<BuildType>()
     for (i in 1..10) {
-        btCollection.add(ABT("A$i"))
+        btCollection.add(ABT("AA$i"))
     }
     btCollection.forEach{
         buildType(it)
