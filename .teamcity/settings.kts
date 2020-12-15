@@ -34,7 +34,7 @@ project {
     vcsRoot(AnotherRoot)
 
     val btCollection = arrayListOf<BuildType>()
-    for (i in 2..10) {
+    for (i in 1..10) {
         btCollection.add(ABT("A$i"))
     }
     btCollection.forEach{
@@ -55,7 +55,7 @@ project {
 
 class ABT(private val givenName: String) : BuildType( {
     id(givenName)
-    name = givenName
+    name = "$givenName-new"
 })
 
 class BBB(deps: Collection<BuildType>) : BuildType({
