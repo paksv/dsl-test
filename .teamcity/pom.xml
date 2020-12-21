@@ -6,7 +6,7 @@
   <artifactId>One_NewDslOne_dsl</artifactId>
   <version>1.0-SNAPSHOT</version>
   <properties>
-    <kotlin.version>1.4.10</kotlin.version>
+    <kotlin.version>1.3.70</kotlin.version>
   </properties>
 
   <parent>
