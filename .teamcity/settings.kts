@@ -43,6 +43,7 @@ project {
     val f = File("aaa.txt")
 //    f.createNewFile()
     println(f.absolutePath)
+    println(KotlinVersion.CURRENT)
     println(org.apache.commons.io.FileUtils.toURLs(arrayOf(f)))
     buildType(BBB(btCollection))
     buildType(Spak_fast)
