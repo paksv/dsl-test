@@ -57,6 +57,7 @@ project {
 class ABT(private val givenName: String) : BuildType( {
     id(givenName)
     name = "$givenName-new"
+    description="Kotlin versioN: ${KotlinVersion.CURRENT}"
 })
 
 class BBB(deps: Collection<BuildType>) : BuildType({
