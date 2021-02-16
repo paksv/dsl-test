@@ -28,7 +28,7 @@ To debug in IntelliJ Idea, open the 'Maven Projects' tool window (View
 version = "2019.2"
 
 project {
-    description = "Lots of DSL objects in here"
+    description = "Lots of DSL objects in here: ${DslContext.getParameter("Some.Param")}"
     defaultTemplate = RelativeId("Ttt")
 
     vcsRoot(AnotherRoot)
@@ -92,7 +92,8 @@ object Spak_fast : BuildType({
     steps {
         script {
             id = "RUNNER_1"
-            scriptContent = "timeout %sleep.time%"
+            scriptContent = "timeout %sleep.time%. "
+
         }
     }
 })
