@@ -1,7 +1,17 @@
-import jetbrains.buildServer.configs.kotlin.v2019_2.*
+import jetbrains.buildServer.configs.kotlin.v10.toExtId
+import jetbrains.buildServer.configs.kotlin.v2019_2.BuildFeatures
+import jetbrains.buildServer.configs.kotlin.v2019_2.BuildType
+import jetbrains.buildServer.configs.kotlin.v2019_2.DslContext
+import jetbrains.buildServer.configs.kotlin.v2019_2.buildFeatures.PullRequests
+import jetbrains.buildServer.configs.kotlin.v2019_2.buildFeatures.commitStatusPublisher
+import jetbrains.buildServer.configs.kotlin.v2019_2.buildFeatures.pullRequests
+import jetbrains.buildServer.configs.kotlin.v2019_2.buildSteps.gradle
 import jetbrains.buildServer.configs.kotlin.v2019_2.buildSteps.script
-import jetbrains.buildServer.configs.kotlin.v2019_2.vcs.GitVcsRoot
-import java.io.File
+import jetbrains.buildServer.configs.kotlin.v2019_2.project
+import jetbrains.buildServer.configs.kotlin.v2019_2.sequential
+import jetbrains.buildServer.configs.kotlin.v2019_2.triggers.VcsTrigger
+import jetbrains.buildServer.configs.kotlin.v2019_2.triggers.vcs
+import jetbrains.buildServer.configs.kotlin.v2019_2.version
 
 /*
 The settings script is an entry point for defining a TeamCity
@@ -25,107 +35,109 @@ To debug in IntelliJ Idea, open the 'Maven Projects' tool window (View
 'Debug' option is available in the context menu for the task.
 */
 
-version = "2019.2"
+version = "2020.2"
 
 project {
-    description = "Lots of DSL objects in here"
-    defaultTemplate = RelativeId("Ttt")
-
-    vcsRoot(AnotherRoot)
-
-    val btCollection = arrayListOf<BuildType>()
-    for (i in 1..10) {
-        btCollection.add(ABT("AA$i"))
+    params {
+        // Disable the teamcity UI completely so that you can only modify config via the Kotlin DSL
+        // param("teamcity.ui.settings.readOnly", "true")
     }
-    btCollection.forEach{
+
+    val buildChain = sequential {
+        parallel {
+            sequential {
+                buildType(GradleTask("Compile sources", tasks = "build -x test -PenableTreatAllWarningsAsErrors=true"))
+                buildType(GradleTask("Run tests", tasks = "test"))
+            }
+            buildType(GradleTask("Run detekt", tasks = "detekt"))
+            buildType(GradleTask("Run markdownlint", tasks = "markdownlint"))
+            buildType(BuildNativeImageTask("createmigration"))
+            buildType(BuildNativeImageTask("repocheckout"))
+            buildType(BuildNativeImageTask("repoanalysis"))
+            buildType(BuildNativeImageTask("repodelete"))
+        }
+    }
+    buildChain.buildTypes().forEach {
         buildType(it)
-    }
-    val f = File("aaa.txt")
-//    f.createNewFile()
-    println(f.absolutePath)
-    println(KotlinVersion.CURRENT)
-    println(org.apache.commons.io.FileUtils.toURLs(arrayOf(f)))
-    buildType(BBB(btCollection))
-    buildType(Spak_fast)
-    buildType(Nexxxt)
-
-    template(Ttt)
-
-    subProject(SubProject22)
-}
-
-class ABT(private val givenName: String) : BuildType( {
-    id(givenName)
-    name = "$givenName-new"
-    description="Kotlin versioN: ${KotlinVersion.CURRENT}"
-})
-
-class BBB(deps: Collection<BuildType>) : BuildType({
-    name = "BBBB"
-    dependencies{
-        deps.forEach {
-            snapshot(it) {
-                reuseBuilds = ReuseBuilds.NO
+        it.triggers {
+            vcs {
+                quietPeriodMode = VcsTrigger.QuietPeriodMode.DO_NOT_USE
             }
         }
     }
-})
+}
 
-object Nexxxt : BuildType({
-    name = "Nexxxxt"
+open class CommandLineTask(name: String, script: String) : BuildType({
+    id(name.toExtId())
+    this.name = name
+    this.description = name
 
+    vcs {
+        root(DslContext.settingsRoot)
+    }
+    this.enablePullRequestFeatures()
     steps {
         script {
-            id = "RUNNER_1"
-            scriptContent = "echo Hello world"
+            scriptContent = script
+        }
+    }
+    requirements {
+        exists("docker.server.version")
+        contains("docker.server.osType", "linux")
+        moreThan("teamcity.agent.hardware.memorySizeMb", "7000")
+    }
+})
+
+class GradleTask(name: String, tasks: String) : BuildType({
+    id(name.toExtId())
+    this.name = name
+    vcs {
+        root(DslContext.settingsRoot)
+    }
+    this.enablePullRequestFeatures()
+    steps {
+        gradle {
+            buildFile = "build.gradle"
+            this.tasks = tasks
+            enableStacktrace = true
+            jdkHome = "%env.JDK_1_8_x64%"
         }
     }
 })
 
-object Spak_fast : BuildType({
-    name = "Spak Fast 2"
+class BuildNativeImageTask(name: String) : CommandLineTask(
+        name = "Build native images for '$name' module",
+        script = "./create-$name-native-image.sh"
+)
 
-    params {
-        text("sleep.time", "", display = ParameterDisplay.PROMPT, allowEmpty = true)
+fun BuildType.enablePullRequestFeatures() {
+    features {
+        enablePullRequestTriggerFeature()
+        enablePullRequestStatusPublisherFeature()
     }
+}
 
-    steps {
-        script {
-            id = "RUNNER_1"
-            scriptContent = "timeout %sleep.time%"
+fun BuildFeatures.enablePullRequestTriggerFeature() {
+    pullRequests {
+        vcsRootExtId = "${DslContext.settingsRoot.id}"
+        provider = github {
+            authType = token {
+                token = "credentialsJSON:480aec2d-c7db-4ad3-9428-89abe1e8f24a"
+            }
+            filterAuthorRole = PullRequests.GitHubRoleFilter.EVERYBODY
         }
     }
-})
+}
 
-object Ttt : Template({
-    name = "TTT"
-
-    steps {
-        script {
-            id = "RUNNER_31"
-            scriptContent = "#sleep 360"
+fun BuildFeatures.enablePullRequestStatusPublisherFeature() {
+    commitStatusPublisher {
+        vcsRootExtId = "${DslContext.settingsRoot.id}"
+        publisher = github {
+            githubUrl = "https://api.github.com"
+            authType = personalToken {
+                token = "credentialsJSON:480aec2d-c7db-4ad3-9428-89abe1e8f24a"
+            }
         }
+        param("github_oauth_user", "athkalia")
     }
-})
-
-object AnotherRoot : GitVcsRoot({
-    name = "Another Root"
-    url = "/Users/sergeypak/projects/Other/teamcity-dsl-settings/"
-    authMethod = password {
-        userName = "user"
-        password = "credentialsJSON:d8414e5e-2443-48ad-9a7e-3804b6c84cf2"
-    }
-})
-
-
-object SubProject22 : Project({
-    name = "subProject 22"
-
-    buildType(SubProject_BTT)
-})
-
-object SubProject_BTT : BuildType({
-    name = "BTT"
-
-    buildNumberPattern = "credentialsJSON:9bafce27-e021-483c-b230-5c3990420188"
-})
+}
