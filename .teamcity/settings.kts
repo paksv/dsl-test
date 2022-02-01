@@ -77,7 +77,7 @@ object Spak_fast : BuildType({
     }
     dependencies {
         artifacts(AbsoluteId("One_Artifact")) {
-            buildRule = lastSuccessful()
+            buildRule = build("3")
             artifactRules = """*.txt"""
         }
     }
