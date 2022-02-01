@@ -109,15 +109,6 @@ object Ttt : Template({
     }
 })
 
-object AnotherRoot : GitVcsRoot({
-    name = "Another Root"
-    url = "/Users/sergeypak/projects/Other/teamcity-dsl-settings/"
-    authMethod = password {
-        userName = "user"
-        password = "credentialsJSON:d8414e5e-2443-48ad-9a7e-3804b6c84cf2"
-    }
-})
-
 
 object SubProject22 : Project({
     name = "subProject 22"
