@@ -48,8 +48,6 @@ project {
     buildType(Nexxxt)
 
     template(Ttt)
-
-    subProject(SubProject22)
 }
 
 class ABT(private val givenName: String) : BuildType( {
@@ -105,17 +103,4 @@ object Ttt : Template({
             scriptContent = "#sleep 360"
         }
     }
-})
-
-
-object SubProject22 : Project({
-    name = "subProject 22"
-
-    buildType(SubProject_BTT)
-})
-
-object SubProject_BTT : BuildType({
-    name = "BTT"
-
-    buildNumberPattern = "credentialsJSON:9bafce27-e021-483c-b230-5c3990420188"
 })
