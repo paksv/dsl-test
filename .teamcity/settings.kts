@@ -28,7 +28,7 @@ To debug in IntelliJ Idea, open the 'Maven Projects' tool window (View
 version = "2019.2"
 
 project {
-    description = "Lots of DSL objects in here: ${DslContext.getParameter("Some.Param")}"
+    description = "Lots of DSL objects"
     defaultTemplate = RelativeId("Ttt")
 
     val btCollection = arrayListOf<BuildType>()
