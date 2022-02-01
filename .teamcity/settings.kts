@@ -32,31 +32,16 @@ project {
     defaultTemplate = RelativeId("Ttt")
 
     val btCollection = arrayListOf<BuildType>()
-    for (i in 1..10) {
-        btCollection.add(ABT("AA$i"))
-    }
-    btCollection.forEach{
-        buildType(it)
-    }
     val f = File("aaa.txt")
 //    f.createNewFile()
-    println(f.absolutePath)
-    println(KotlinVersion.CURRENT)
-    println(org.apache.commons.io.FileUtils.toURLs(arrayOf(f)))
     buildType(BBB(btCollection))
     buildType(Spak_fast)
     buildType(Nexxxt)
 
     template(Ttt)
 
-    subProject(SubProject22)
 }
 
-class ABT(private val givenName: String) : BuildType( {
-    id(givenName)
-    name = "$givenName-new"
-    description="Kotlin versioN: ${KotlinVersion.CURRENT}"
-})
 
 class BBB(deps: Collection<BuildType>) : BuildType({
     name = "BBBB"
@@ -90,8 +75,14 @@ object Spak_fast : BuildType({
     steps {
         script {
             id = "RUNNER_1"
-            scriptContent = "timeout %sleep.time%. "
+            scriptContent = "ls -al"
 
+        }
+    }
+    dependencies {
+        artifacts(AbsoluteId("One_Artifact")) {
+            buildRule = lastSuccessful()
+            artifactRules = """*.txt"""
         }
     }
 })
@@ -105,17 +96,4 @@ object Ttt : Template({
             scriptContent = "#sleep 360"
         }
     }
-})
-
-
-object SubProject22 : Project({
-    name = "subProject 22"
-
-    buildType(SubProject_BTT)
-})
-
-object SubProject_BTT : BuildType({
-    name = "BTT"
-
-    buildNumberPattern = "credentialsJSON:9bafce27-e021-483c-b230-5c3990420188"
 })
