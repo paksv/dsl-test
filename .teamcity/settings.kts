@@ -68,10 +68,6 @@ object Nexxxt : BuildType({
 object Spak_fast : BuildType({
     name = "Spak Fast 2"
 
-    params {
-        text("sleep.time", "", display = ParameterDisplay.PROMPT, allowEmpty = true)
-    }
-
     steps {
         script {
             id = "RUNNER_1"
