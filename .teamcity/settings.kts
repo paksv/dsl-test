@@ -90,7 +90,7 @@ object Spak_fast : BuildType({
     steps {
         script {
             id = "RUNNER_1"
-            scriptContent = "timeout %sleep.time%. "
+            scriptContent = "sleep %sleep.time%. "
 
         }
     }
