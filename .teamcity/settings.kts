@@ -31,8 +31,6 @@ project {
     description = "Lots of DSL objects in here: ${DslContext.getParameter("Some.Param")}"
     defaultTemplate = RelativeId("Ttt")
 
-    vcsRoot(AnotherRoot)
-
     val btCollection = arrayListOf<BuildType>()
     for (i in 1..10) {
         btCollection.add(ABT("AA$i"))
